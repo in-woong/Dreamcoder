@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Coordinates</title>
+    <style>
+      body {
+        background-color: black;
+        overflow: auto;
+      }
+      .pink {
+        background-color: pink;
+        width: 150px;
+        height: 150px;
+        margin-bottom: 10px;
+      }
+      .red {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink red"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <div class="pink"></div>
+    <script>
+      const special = document.querySelector(".red");
+      special.addEventListener("click", (event) => {
+        const rect = special.getBoundingClientRect();
+        console.log(rect);
+        console.log(`client, ${event.clientX}, ${event.clientY}`);
+        console.log(`page ${event.pageX}, ${event.pageY}`);
+      });
+    </script>
+  </body>
+</html>
