@@ -4,36 +4,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script src="./main.js" defer></script>
+    <link rel="stylesheet" href="./style.css">
     <title>index</title>
-    <style>
-      body {
-        background-color: black;
-        color: white;
-      }
-    </style>
   </head>
   <body>
     <div>마우스를 올려보세요</div>
-    <img id="imgg" src="./img/target.png" alt="" style="position: absolute" />
-    <div id="result" style="position: absolute"></div>
-
-    <script>
-      document.addEventListener("mousemove", (e) => {
-        resultFun(e);
-      });
-
-      const resultFun = (event) => {
-        const xY = event.clientX + "*" + event.clientY;
-        const positionLeft = event.clientX;
-        const positionTop = event.clientY;
-        console.log(typeof positionLeft, positionTop);
-        document.getElementById("imgg").style.left = positionLeft - 60 + "px";
-        document.getElementById("imgg").style.top = positionTop - 60 + "px";
-
-        document.getElementById("result").innerHTML = xY;
-        document.getElementById("result").style.left = positionLeft + 20 + "px";
-        document.getElementById("result").style.top = positionTop + 20 + "px";
-      };
-    </script>
+    <div class="line" id="horizontal"></div>
+    <div class="line" id="vertical"></div>
+    <img id="target" src="./img/target.png" alt="target" />
+    <div id="result"></div>
   </body>
 </html>
