@@ -19,9 +19,19 @@
       .red {
         background-color: red;
       }
+      .buttons {
+        position: fixed;
+        top: 20px;
+        right: 20px;
+      }
     </style>
   </head>
   <body>
+    <div class="buttons">
+      <button class="scrollBy">Scroll by 100px(y)</button>
+      <button class="scrollTo">Scroll to 100px</button>
+      <button class="scrollSpecial">Scroll to Special</button>
+    </div>
     <div class="pink"></div>
     <div class="pink"></div>
     <div class="pink"></div>
@@ -43,12 +53,30 @@
     <div class="pink"></div>
     <div class="pink"></div>
     <script>
+      const scrollBy = document.querySelector(".scrollBy");
+      const scrollTo = document.querySelector(".scrollTo");
+      const scrollSpecial = document.querySelector(".scrollSpecial");
       const special = document.querySelector(".red");
+
       special.addEventListener("click", (event) => {
         const rect = special.getBoundingClientRect();
         console.log(rect);
         console.log(`client, ${event.clientX}, ${event.clientY}`);
         console.log(`page ${event.pageX}, ${event.pageY}`);
+      });
+      scrollBy.addEventListener("click", (event) => {
+        const pageX = event.pageX;
+        const pageY = event.pageY;
+        console.log(pageX, pageY)
+        window.scrollTo(pageX, pageY + 100);
+      });
+
+      scrollTo.addEventListener("click", (event) => {
+        window.scrollTo(100, 100);
+      });
+
+      scrollSpecial.addEventListener("click", (event) => {
+        window.scrollTo(71, 1971);
       });
     </script>
   </body>
