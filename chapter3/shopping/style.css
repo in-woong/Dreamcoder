@@ -1,0 +1,97 @@
+body {
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  color: white;
+  background-color: black;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+.phone {
+  z-index: 10;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  width: 500px;
+  border-radius: 40px;
+  background-color: rgb(91, 88, 88);
+}
+
+header {
+  font-size: 35px;
+  border-radius: 40px 40px 0 0;
+  width: 100%;
+  background-color: rgb(91, 88, 88);
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+main {
+  width: 100%;
+  background-color: black;
+  height: 100%;
+  overflow: scroll;
+}
+ul {
+  font-size: 20px;
+  width: 100%;
+  margin: 0;
+  padding: 0;
+}
+li {
+    font-size: 30px;
+  list-style: none;
+  padding: 0px 20px;
+  display: flex;
+  justify-content: space-between;
+}
+button {
+  border-style: none;
+  background-color: transparent;
+  cursor: pointer;
+  color: red;
+}
+
+footer {
+  font-size: 20px;
+  border-radius: 0 0 40px 40px;
+  width: 100%;
+  background-color: rgb(91, 88, 88);
+  height: 50px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.listForm {
+  font-size: 20px;
+  padding: 0 20px;
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+.listInput {
+  font-size: 20px;
+  border: none;
+  background-color: transparent;
+  width: 100%;
+  color:thistle
+}
+:focus {
+  outline: none;
+}
+.plusBtn {
+  border: none;
+  background-color: transparent;
+  color: white;
+  font-size: 25px;
+  margin-left: 5px;
+}
+.trashBtn{
+    font-size: 25px;
+}
