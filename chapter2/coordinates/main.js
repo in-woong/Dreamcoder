@@ -1,4 +1,7 @@
 const targetImg = document.getElementById("target");
+const targetRec =targetImg.getBoundingClientRect();
+const targetWidth=targetRec.width/2;
+const targetHeight=targetRec.height/2;
 const result = document.getElementById("result");
 const hLine = document.getElementById("horizontal");
 const vLine = document.getElementById("vertical");
@@ -10,14 +13,12 @@ document.addEventListener("mousemove", (e) => {
 const resultFun = (event) => {
   const x = event.clientX;
   const y = event.clientY;
-  const xY = `${x}px ${y}px`
-  targetImg.style.left = `${x}px`;
-  targetImg.style.top = `${y}px`;
+  const xY = `${x}px ${y}px`;
+  targetImg.style.transform = `translate(${x-targetWidth}px, ${y-targetHeight}px)`;
 
   result.innerHTML = xY;
-  result.style.left = `${x}px`;
-  result.style.top = `${y}px`;
+  result.style.transform = `translate(${x}px, ${y}px)`;
 
-  hLine.style.top = `${y}px`;
-  vLine.style.left = `${x}px`;
+  hLine.style.transform = `translateY(${y}px)`;
+  vLine.style.transform = `translateX(${x}px)`;
 };
