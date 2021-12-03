@@ -44,6 +44,7 @@ router.get("/:id", (req, res, next) => {
 
 router.post("/", (req, res, next) => {
   const { text, name, username, url } = req.body;
+  console.log(text);
   const newTweet = {
     id: Date.now().toString(),
     text,
@@ -53,24 +54,7 @@ router.post("/", (req, res, next) => {
     createdAt: new Date().toString(),
   };
   tweets = [...tweets, newTweet];
-  res.status(201).json(tweets);
-});
-
-router.put("/:id", (req, res, next) => {
-  const id = req.params.id;
-  const { text } = req.body;
-  if (!id) {
-    return res.status(404).json({ message: "there is no id" });
-  }
-  const foundTweet = tweets.find((tweet) => tweet.id === id);
-  foundTweet.text = text;
   res.status(200).json(tweets);
-});
-
-router.delete("/:id", (req, res, next) => {
-  const id = req.params.id;
-  tweets = tweets.filter((tweet) => tweet.id !== id);
-  res.sendStatus(204);
 });
 
 export default router;

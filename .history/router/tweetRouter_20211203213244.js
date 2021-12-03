@@ -58,19 +58,12 @@ router.post("/", (req, res, next) => {
 
 router.put("/:id", (req, res, next) => {
   const id = req.params.id;
-  const { text } = req.body;
+  const {text} = req.body
   if (!id) {
     return res.status(404).json({ message: "there is no id" });
   }
-  const foundTweet = tweets.find((tweet) => tweet.id === id);
-  foundTweet.text = text;
-  res.status(200).json(tweets);
-});
-
-router.delete("/:id", (req, res, next) => {
-  const id = req.params.id;
-  tweets = tweets.filter((tweet) => tweet.id !== id);
-  res.sendStatus(204);
+  const foundTweet = tweets.find(tweet=>tweet.id === id);
+  foundTweet.text = text
 });
 
 export default router;
