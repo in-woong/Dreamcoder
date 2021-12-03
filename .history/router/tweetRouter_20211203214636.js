@@ -32,13 +32,13 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   const id = req.params.id;
-  const tweet = tweets.find((tweet) => tweet.id === id);
-  if (!tweet) {
+  const foundTweets = tweets.find((tweet) => tweet.id === id);
+  if (!foundTweets) {
     return res
       .status(404)
       .json({ message: `Ooooooooops It's not ID check ${id} Pleaaaaaase` });
   }
-  res.status(200).json(tweet);
+  res.status(200).json(foundTweets);
 });
 
 router.post("/", (req, res, next) => {

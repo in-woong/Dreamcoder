@@ -32,13 +32,13 @@ router.get("/", (req, res, next) => {
 
 router.get("/:id", (req, res, next) => {
   const id = req.params.id;
-  const tweet = tweets.find((tweet) => tweet.id === id);
-  if (!tweet) {
+  const foundTweets = tweets.find((tweet) => tweet.id === id);
+  if (!foundTweets) {
     return res
       .status(404)
       .json({ message: `Ooooooooops It's not ID check ${id} Pleaaaaaase` });
   }
-  res.status(200).json(tweet);
+  res.status(200).json(foundTweets);
 });
 
 router.post("/", (req, res, next) => {
@@ -57,12 +57,12 @@ router.post("/", (req, res, next) => {
 router.put("/:id", (req, res, next) => {
   const id = req.params.id;
   const { text } = req.body;
-  const tweet = tweets.find((tweet) => tweet.id === id);
-  if (!tweet) {
-    return res.status(404).json({ message: `Tweet id(${id}) not found` });
+  if (!id) {
+    return res.status(404).json({ message: "there is no id" });
   }
-  tweet.text = text;
-  res.status(200).json(tweet);
+  const foundTweet = tweets.find((tweet) => tweet.id === id);
+  foundTweet.text = text;
+  res.status(200).json(tweets);
 });
 
 router.delete("/:id", (req, res, next) => {
