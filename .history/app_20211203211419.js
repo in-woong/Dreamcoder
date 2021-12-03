@@ -3,7 +3,7 @@ import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
 
-import tweetsRouter from "./router/tweetRouter.js";
+import tweetsRouter from "./router/s.js";
 
 const app = express();
 
@@ -24,4 +24,3 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(8080);
-
