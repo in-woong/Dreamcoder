@@ -24,45 +24,44 @@ let tweets = [
 
 router.get("/", (req, res, next) => {
   const username = req.query.username;
-  const data = username
-    ? tweets.filter((tweet) => tweet.username === username)
-    : tweets;
+  const data = username? tweets.filter((tweet) => tweet.username === username) : tweets
   res.status(200).json(data);
 });
 
 router.get("/:id", (req, res, next) => {
   const id = req.params.id;
-  const tweet = tweets.find((tweet) => tweet.id === id);
-  if (!tweet) {
+  const foundTweets = tweets.find((tweet) => tweet.id === id);
+  if (!foundTweets) {
     return res
       .status(404)
-      .json({ message: `Ooooooooops It's not ID check ${id} Pleaaaaaase` });
+      .json({ message: "Ooooooooops It's not ID check id Pleaaaaaase" });
   }
-  res.status(200).json(tweet);
+  res.status(200).json(foundTweets);
 });
 
 router.post("/", (req, res, next) => {
-  const { text, name, username } = req.body;
-  const tweet = {
+  const { text, name, username, url } = req.body;
+  const newTweet = {
     id: Date.now().toString(),
     text,
     name,
     username,
+    url,
     createdAt: new Date().toString(),
   };
-  tweets = [tweet, ...tweets];
-  res.status(201).json(tweet);
+  tweets = [...tweets, newTweet];
+  res.status(201).json(tweets);
 });
 
 router.put("/:id", (req, res, next) => {
   const id = req.params.id;
   const { text } = req.body;
-  const tweet = tweets.find((tweet) => tweet.id === id);
-  if (!tweet) {
-    return res.status(404).json({ message: `Tweet id(${id}) not found` });
+  if (!id) {
+    return res.status(404).json({ message: "there is no id" });
   }
-  tweet.text = text;
-  res.status(200).json(tweet);
+  const foundTweet = tweets.find((tweet) => tweet.id === id);
+  foundTweet.text = text;
+  res.status(200).json(tweets);
 });
 
 router.delete("/:id", (req, res, next) => {
