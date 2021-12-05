@@ -1,6 +1,4 @@
 const listForm = document.querySelector(".listForm");
-const plusBtn = document.querySelector(".plusBtn");
-const ul = document.querySelector("ul");
 const listInput = document.querySelector(".listInput");
 const items = document.querySelector(".items");
 
@@ -14,9 +12,9 @@ function onAdd(e) {
   if (text == "") {
     return;
   }
-  const itemRow = createItem(text);
-
-  items.appendChild(itemRow);
+  const item = createItem(text);
+  items.appendChild(item);
+  item.scrollIntoView({ block: "center" });
   listInput.value = "";
 }
 
