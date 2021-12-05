@@ -2,9 +2,7 @@ const listForm = document.querySelector(".listForm");
 const listInput = document.querySelector(".listInput");
 const items = document.querySelector(".items");
 
-listForm.addEventListener("submit", (e) => {
-  onAdd(e);
-});
+let id = 0;
 
 function onAdd(e) {
   e.preventDefault();
@@ -21,28 +19,28 @@ function onAdd(e) {
 function createItem(text) {
   const itemRow = document.createElement("li");
   itemRow.setAttribute("class", "item__row");
+  itemRow.setAttribute("data-target-id", `${id}`);
+  itemRow.innerHTML = `       
+  <div class="item">
+    <span class="item__name">${text}</span>
+    <button class="trashBtn">
+      <i class="fas fa-trash-alt" data-id=${id}></i>
+    </button>
+  </div>
+  <div class="divider"></div>`;
 
-  const item = document.createElement("div");
-  item.setAttribute("class", "item");
-
-  const itemName = document.createElement("span");
-  itemName.setAttribute("class", "item__name");
-  itemName.innerText = text;
-
-  const trashBtn = document.createElement("button");
-  trashBtn.setAttribute("class", "trashBtn");
-  trashBtn.innerHTML = `<i class="fas fa-trash-alt"></i>`;
-  trashBtn.addEventListener("click", () => {
-    items.removeChild(itemRow);
-  });
-
-  const divider = document.createElement("div");
-  divider.setAttribute("class", "divider");
-
-  item.appendChild(itemName);
-  item.appendChild(trashBtn);
-  itemRow.appendChild(item);
-  itemRow.appendChild(divider);
-
+  id++;
   return itemRow;
 }
+
+listForm.addEventListener("submit", (e) => {
+  onAdd(e);
+});
+
+items.addEventListener("click", (e) => {
+  const id = e.target.dataset.id;
+  if (id) {
+    const item = document.querySelector(`.item__row[data-target-id="${id}"]`);
+    items.removeChild(item);
+  }
+});
