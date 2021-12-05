@@ -5,28 +5,37 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Document</title>
+    <script
+      src="https://kit.fontawesome.com/85002c7f57.js"
+      crossorigin="anonymous"
+    ></script>
     <script src="./main.js" defer></script>
     <link rel="stylesheet" href="./style.css" />
   </head>
   <body>
-    <div class="phone">
-      <header>
+    <section class="list">
+      <header class="header">
         <span>Shopping List</span>
       </header>
-      <main>
-        <ul>
-          <li>
-            <span class="listName">Clock</span
-            ><button class="trashBtn">T</button>
-          </li>
-        </ul>
-      </main>
-      <footer>
+      <ul class="items">
+        <li class="item__row">
+          <div class="item">
+            <span class="item__name">Clock</span>
+            <button class="trashBtn">
+              <i class="fas fa-trash-alt"></i>
+            </button>
+          </div>
+          <div class="divider"></div>
+        </li>
+      </ul>
+      <footer class="footer">
         <form class="listForm">
           <input class="listInput" type="text" placeholder="input something" />
-          <input type="submit" class="plusBtn" value="+" />
+          <button type="submit" class="plusBtn">
+            <i class="fas fa-plus"></i>
+          </button>
         </form>
       </footer>
-    </div>
+    </section>
   </body>
 </html>
