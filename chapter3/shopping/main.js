@@ -1,37 +1,50 @@
 const listForm = document.querySelector(".listForm");
 const plusBtn = document.querySelector(".plusBtn");
-const trashBtn = document.querySelector(".trashBtn");
 const ul = document.querySelector("ul");
+const listInput = document.querySelector(".listInput");
+const items = document.querySelector(".items");
 
 listForm.addEventListener("submit", (e) => {
-  addList(e);
+  onAdd(e);
 });
 
-trashBtn.addEventListener("click", (e) => {
-  removeList(e);
-});
-
-function addList(e) {
+function onAdd(e) {
   e.preventDefault();
-  const listInput = document.querySelector(".listInput");
-  const listName = document.createElement("span");
-  listName.setAttribute("class", "listName");
-  listName.innerText = listInput.value;
+  const text = listInput.value;
+  if (text == "") {
+    return;
+  }
+  const itemRow = createItem(text);
+
+  items.appendChild(itemRow);
   listInput.value = "";
+}
+
+function createItem(text) {
+  const itemRow = document.createElement("li");
+  itemRow.setAttribute("class", "item__row");
+
+  const item = document.createElement("div");
+  item.setAttribute("class", "item");
+
+  const itemName = document.createElement("span");
+  itemName.setAttribute("class", "item__name");
+  itemName.innerText = text;
 
   const trashBtn = document.createElement("button");
   trashBtn.setAttribute("class", "trashBtn");
-  trashBtn.innerText = "T";
+  trashBtn.innerHTML = `<i class="fas fa-trash-alt"></i>`;
+  trashBtn.addEventListener("click", () => {
+    items.removeChild(itemRow);
+  });
 
-  const list = document.createElement("li");
-  list.setAttribute("class", "list");
-  list.appendChild(listName);
-  list.appendChild(trashBtn);
+  const divider = document.createElement("div");
+  divider.setAttribute("class", "divider");
 
-  ul.appendChild(list);
-}
+  item.appendChild(itemName);
+  item.appendChild(trashBtn);
+  itemRow.appendChild(item);
+  itemRow.appendChild(divider);
 
-function removeList(e) {
-  console.log(e);
-  e.target.remove();
+  return itemRow;
 }
