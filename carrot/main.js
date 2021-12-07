@@ -1,7 +1,7 @@
-const timer = document.querySelector(".timer");
-const playBtn = document.querySelector(".playBtn");
-const alertDiv = document.querySelector(".alert");
-const replayBtn = document.querySelector(".replayBtn");
+const timer = document.querySelector(".game__timer");
+const playBtn = document.querySelector(".game__button");
+const alertDiv = document.querySelector(".pop-up");
+const replayBtn = document.querySelector(".pop-up__refresh");
 const carrotImgs = document.querySelectorAll(".carrotImg");
 const bugImgs = document.querySelectorAll(".bugImg");
 const carrotImg = document.querySelector(".carrotImg");
@@ -36,7 +36,7 @@ function setTime(TIME) {
 
 function hiddenPlayBtn() {
   playBtn.removeAttribute("class", "hidden");
-  playBtn.setAttribute("class", "playBtn");
+  playBtn.setAttribute("class", "game__button");
 }
 
 function hiddenAlertDiv() {

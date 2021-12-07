@@ -10,53 +10,31 @@
     ></script>
     <link rel="stylesheet" href="./style.css" />
     <script src="./main.js" defer></script>
-    <title>Carrot</title>
+    <title>Fun Game</title>
   </head>
   <body>
-    <header>
-      <button class="playBtn">
-        <i class="fas fa-play"></i>
+    <section class="game">
+      <header class="game__header">
+        <button class="game__button">
+          <i class="fas fa-play"></i>
+        </button>
+        <span class="game__timer">00:00</span>
+        <span class="game__score">10</span>
+      </header>
+      <section class="game__field">
+        <div class="bugImg hidden">
+          <img src="./img/bug.png" alt="bug" />
+        </div>
+        <div class="carrotImg hidden">
+          <img src="./img/carrot.png" alt="carrot" />
+        </div>
+      </section>
+    </section>
+    <section class="pop-up pop-up__hidden">
+      <button class="pop-up__refresh">
+        <i class="fas fa-redo"></i>
       </button>
-      <div class="timer">00:00</div>
-      <div class="bugCount">10</div>
-    </header>
-    <main class="main">
-      <div class="bugImg hidden">
-        <img src="./img/bug.png" alt="bug" />
-      </div>
-      <div class="bugImg hidden">
-        <img src="./img/bug.png" alt="bug" />
-      </div>
-      <div class="bugImg hidden">
-        <img src="./img/bug.png" alt="bug" />
-      </div>
-      <div class="bugImg hidden">
-        <img src="./img/bug.png" alt="bug" />
-      </div>
-      <div class="bugImg hidden">
-        <img src="./img/bug.png" alt="bug" />
-      </div>
-      <div class="carrotImg hidden">
-        <img src="./img/carrot.png" alt="carrot" />
-      </div>
-      <div class="carrotImg hidden">
-        <img src="./img/carrot.png" alt="carrot" />
-      </div>
-      <div class="carrotImg hidden">
-        <img src="./img/carrot.png" alt="carrot" />
-      </div>
-      <div class="carrotImg hidden">
-        <img src="./img/carrot.png" alt="carrot" />
-      </div>
-      <div class="carrotImg hidden">
-        <img src="./img/carrot.png" alt="carrot" />
-      </div>
-    </main>
-    <div class="alert hidden">
-      <div class="replayBtn">
-        <i class="fas fa-undo"></i>
-      </div>
-      <span class="messg"> You Won</span>
-    </div>
+      <span class="pop-up__message"> You Won</span>
+    </section>
   </body>
 </html>
