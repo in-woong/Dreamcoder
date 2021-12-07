@@ -63,7 +63,7 @@ button {
   height: 100%;
   margin-top: 40px;
   position:relative;
-  background-color: blue;
+
 }
 
 .pop-up {
@@ -93,6 +93,6 @@ button {
   color: white;
 }
 
-.pop-up__hidden {
+.hidden {
   display: none;
 }
