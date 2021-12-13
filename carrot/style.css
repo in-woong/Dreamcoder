@@ -1,36 +1,41 @@
 body {
   text-align: center;
+  background-color: black;
 }
+
 button {
-  border: none;
   outline: none;
   cursor: pointer;
+  border: none;
+  background: white;
+  border-radius: 20%;
+  padding: 0;
 }
+
 .game {
-  border-radius: 20px;
-  margin: auto;
   display: flex;
   flex-direction: column;
-  background: url("./img/background.png") center/cover;
+  position: relative;
+  border-radius: 20px;
   width: 800px;
   height: 500px;
-  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
-    Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+  margin: auto;
+  margin-top: 50px;
+  background: url(img/background.png) center/cover no-repeat;
 }
-.game__header {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 20px;
+
+header {
+  text-align: center;
+  padding: 8px;
 }
+
 .game__button {
   width: 60px;
   height: 60px;
-  background-color: #f3d9b0;
-  border: solid 4px black;
   font-size: 24px;
-  border-radius: 10px;
-  transition: transform 300ms ease-in;
+  background-color: wheat;
+  border: 4px solid black;
+  transition: transfrom 300ms ease-in;
 }
 
 .game__button:hover {
@@ -38,68 +43,73 @@ button {
 }
 
 .game__timer {
+  display: block;
   width: 100px;
-  text-align: center;
-  background-color: #fbfafb;
-  border: solid 3px black;
+  margin: auto;
+  margin-top: 8px;
+  padding: 0 20px;
+  background-color: white;
   border-radius: 10px;
   font-size: 32px;
-  margin-top: 8px;
-  visibility: hidden;
+  border: 5px solid black;
 }
+
 .game__score {
-  text-align: center;
+  display: inline-block;
   width: 50px;
   height: 50px;
-  background-color: #f09178;
-  border: solid 3px black;
-  padding: 10px;
-  border-radius: 50px;
   font-size: 46px;
-  margin-top: 8px;
+  margin-top: 4px;
+  background-color: darksalmon;
   color: white;
-  visibility: hidden;
+  border-radius: 50%;
+  border: 3px solid black;
 }
+
 .game__field {
+  position: relative;
   width: 100%;
   height: 100%;
   margin-top: 40px;
-  position: relative;
 }
 
 .pop-up {
-  margin: auto;
-  height: 120px;
-  width: 400px;
-  background-color: rgba(0, 0, 0, 0.7);
   border-radius: 20px;
+  width: 400px;
+  height: 124px;
+  margin: auto;
+  background-color: #00000090;
   color: white;
-  padding: 20px;
-  text-align: center;
   transform: translateY(-150%);
 }
+
+.pop-up--hide {
+  display: none;
+}
+
 .pop-up__refresh {
   width: 60px;
   height: 60px;
   font-size: 24px;
-  background-color: rgb(243, 217, 173);
-  border: solid 2px black;
-  border-radius: 20px;
+  background-color: wheat;
+  border: 2px solid black;
+  transition: transfrom 300ms ease-in;
+}
+
+.pop-up__refresh:hover {
+  transform: scale(1.1);
 }
 
 .pop-up__message {
   display: block;
-  font-size: 20px;
-  margin-top: 30px;
-  color: white;
+  font-size: 38px;
 }
 
-.hidden {
+.hide {
   display: none;
 }
-.bug {
-  cursor: pointer;
-}
-.carrot {
-  cursor: pointer;
+
+.carrot:hover,
+.bug:hover {
+  transform: scale(1.1);
 }

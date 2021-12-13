@@ -1,4 +1,6 @@
 "use strict";
+
+import PopUp from "./popup.js";
 const CARROT_COUNT = 5;
 const BUG_COUNT = 5;
 const CARROT_SIZE = 80;
@@ -10,10 +12,6 @@ const gameBtn = document.querySelector(".game__button");
 const gameTimer = document.querySelector(".game__timer");
 const gameScore = document.querySelector(".game__score");
 
-const popUp = document.querySelector(".pop-up");
-const popUpText = document.querySelector(".pop-up__message");
-const popUpRefresh = document.querySelector(".pop-up__refresh");
-
 const carrotSound = new Audio("./sound/carrot_pull.mp3");
 const bugSound = new Audio("./sound/bug_pull.mp3");
 const alertSound = new Audio("./sound/alert.wav");
@@ -23,6 +21,12 @@ const winSound = new Audio("./sound/game_win.mp3");
 let started = false;
 let score = 0;
 let timer = undefined;
+
+const gameFinishBanner = new PopUp();
+
+gameFinishBanner.setClickListener(() => {
+  startGame();
+});
 
 function initGame() {
   score = 0;
@@ -78,11 +82,6 @@ function updateTimerText(time) {
   }`;
 }
 
-function showPopUpWithText(text) {
-  popUpText.innerText = text;
-  popUp.classList.remove("hidden");
-}
-
 function showBtn() {
   gameTimer.style.visibility = "visible";
   gameScore.style.visibility = "visible";
@@ -100,7 +99,7 @@ function stopGame() {
   started = false;
   stopGameTimer();
   hideStartButton();
-  showPopUpWithText("REPLAY");
+  gameFinishBanner.showWithText("REPLAY");
   playSound(alertSound);
   stopSound(bgSound);
 }
@@ -113,10 +112,6 @@ function showStopButton() {
 
 function hideStartButton() {
   gameBtn.style.visibility = "hidden";
-}
-
-function hidePopUp() {
-  popUp.classList.add("hidden");
 }
 
 field.addEventListener("click", onFieldClick);
@@ -159,7 +154,7 @@ function finishGame(win) {
   }
   stopGameTimer();
   stopSound(bgSound);
-  showPopUpWithText(win ? "YOU WON🥰" : "YOU LOST🤬");
+  gameFinishBanner.showWithText(win ? "YOU WON🥰" : "YOU LOST🤬");
 }
 function updateScoreBoard() {
   gameScore.innerText = CARROT_COUNT - score;
@@ -172,11 +167,4 @@ gameBtn.addEventListener("click", () => {
     startGame();
   }
   started = !started;
-});
-
-popUpRefresh.addEventListener("click", () => {
-  startGame();
-  hidePopUp();
-  updateScoreBoard();
-  gameBtn.style.visibility = "visible";
 });
