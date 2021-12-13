@@ -1,7 +1,31 @@
 "use strict";
 import * as Sound from "./sound.js";
 import Field from "./field.js";
-import PopUp from "./popup.js";
+
+export class GameBuilder {
+  gameDuration(duration) {
+    this.gameDuration = duration;
+    return this;
+  }
+
+  carrotcount(num) {
+    this.carrotcount = num;
+    return this;
+  }
+
+  bugCount(num) {
+    this.bugCount = num;
+    return this;
+  }
+
+  build() {
+    return new Game(
+      this.gameDuration, //
+      this.carrotcount,
+      this.bugCount
+    );
+  }
+}
 
 export default class Game {
   constructor(gameDuration, carrotCount, bugCount) {
