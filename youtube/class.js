@@ -100,3 +100,9 @@ console.log(rectangle instanceof Rectangle);
 console.log(triangle instanceof Rectangle);
 console.log(triangle instanceof Triangle);
 console.log(rectangle instanceof Rectangle);
+
+
+//class binding issue
+//this.onClick.bind(this)와 같이 사용
+//(event)=>this.onclick(event)
+//콜백 함수를 변수로 선언한다
