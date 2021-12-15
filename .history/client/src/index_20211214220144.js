@@ -13,7 +13,7 @@ const baseURL = process.env.REACT_APP_BASE_URL;
 const httpClient = new HttpClient(baseURL);
 const authErrorEventBus = new AuthErrorEventBus();
 const authService = new AuthService();
-const tweetService = new TweetService(httpClient);
+const tweetService = new TweetService(baseURL);
 
 ReactDOM.render(
   <React.StrictMode>

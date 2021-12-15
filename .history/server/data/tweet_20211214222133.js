@@ -20,6 +20,12 @@ let tweets = [
 export async function getAll() {
   return tweets;
 }
+
+export async function filterById(id) {
+  tweets.filter((tweet) => tweet.id !== id);
+  
+  return 
+}
 export async function findById(id) {
   return tweets.find((tweet) => tweet.id === id);
 }
@@ -38,8 +44,4 @@ export async function postNewTweet(text, name, username) {
   tweets = [tweet, ...tweets];
 
   return tweet;
-}
-
-export async function remove(id) {
-  tweets = tweets.filter((tweet) => tweet.id !== id);
 }
