@@ -4,6 +4,7 @@ import morgan from "morgan";
 import cors from "cors";
 
 import tweetsRouter from "./router/tweetRouter.js";
+import authRouter from "./router/authRouter.js";
 
 const app = express();
 
@@ -13,6 +14,7 @@ app.use(cors());
 app.use(morgan("tiny"));
 
 app.use("/tweets", tweetsRouter);
+app.use("/auth", authRouter);
 
 app.use((req, res, next) => {
   res.status(404).json({ message: "I can't find anything" });
@@ -24,4 +26,3 @@ app.use((err, req, res, next) => {
 });
 
 app.listen(8080);
-
