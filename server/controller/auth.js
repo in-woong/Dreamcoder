@@ -40,17 +40,6 @@ export const login = async (req, res, next) => {
   return res.status(200).json({ username, token });
 };
 
-export const me = (req, res, next) => {
-  const { username, token } = req.body;
-
-  jwt.verify(token, secret, (error, decoded) => {
-    if (error) {
-      return res.sendStatus(404);
-    }
-    res.status(200).send(decoded);
-  });
-};
-
 function createJwtToken(id) {
   return jwt.sign(
     {
