@@ -16,7 +16,14 @@ export const signup = async (req, res, next) => {
 
   const hashed = bcrypt.hashSync(password, bcryptSaltRounds);
 
-  userRepository.createUser({ username, password: hashed, name, email, url });
+  userRepository.createUser({
+    username,
+    password: hashed,
+    name,
+    email,
+    url,
+    id: Date.now().toString(),
+  });
   const token = createJwtToken(username);
   res.status(200).json({ username, token });
 };
