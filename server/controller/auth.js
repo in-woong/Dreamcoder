@@ -16,7 +16,7 @@ export const signup = async (req, res, next) => {
 
   const hashed = bcrypt.hashSync(password, bcryptSaltRounds);
 
-  createUser({ username, password: hashed, name, email, url });
+  userRepository.createUser({ username, password: hashed, name, email, url });
   const token = createJwtToken(username);
   res.status(200).json({ username, token });
 };
@@ -25,7 +25,7 @@ export const login = async (req, res, next) => {
   const { username, password } = req.body;
   const user = userRepository.findByUsername(username);
   //login을 하면 id, isAdmin을 payload, 임의의 secret을 가지고, option을 주면서 token 생성
-  
+
   if (!user) {
     return res.status(401).json({ message: "Invalid user or password" });
   }
@@ -34,7 +34,7 @@ export const login = async (req, res, next) => {
   if (!isValidPassword) {
     return res.status(401).json({ message: "Invalid user or password" });
   }
-  
+
   const token = createJwtToken(username);
 
   return res.status(200).json({ username, token });

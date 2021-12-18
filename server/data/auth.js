@@ -16,5 +16,5 @@ export function findByUsername(username) {
 export function createUser(user) {
   const newUser = { id: Date.now().toString(), ...user };
   users.push(user);
-  return newUser
+  return newUser;
 }
