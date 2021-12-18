@@ -1,17 +1,15 @@
 import express from "express";
-import jwt from "jsonwebtoken";
-import bcrypt from "bcrypt";
+import "express-async-errors";
 
 import { body } from "express-validator";
-import validate from "../middleware/validator";
+import validate from "../middleware/validator.js";
 
-import * as authController from "../controller/auth";
+import * as authController from "../controller/auth.js";
 
 const validateCredential = [
   body("username")
     .trim()
-    .isEmpty()
-    .isLength({ min: 3 })
+    .isLength({min:5})
     .withMessage("username should be at least 5 characters"),
   body("password")
     .trim()
@@ -23,7 +21,7 @@ const validateCredential = [
 const validateSignup = [
   ...validateCredential,
   body("name").notEmpty().withMessage("name is missing"),
-  body("email").isEmail().normalizeEmail().normalizeEmail("invalid email"),
+  body("email").isEmail().normalizeEmail().withMessage("invalid email"),
   body("url")
     .isURL()
     .withMessage("invalid URL")
@@ -32,7 +30,6 @@ const validateSignup = [
 ];
 
 const router = express.Router();
-
 
 router.post("/signup", validateSignup, authController.signup);
 

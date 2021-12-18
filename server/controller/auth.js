@@ -1,54 +1,43 @@
-let users = [
-  {
-    username: "ellie",
-    password: "$2b$10$4HRXP76rkUqDOY9/bUa0duaeI8BebbuhV.BSuO00Rn3ONAcXi6UD.",
-    name: "Ellie",
-    email: "ellie@gmail.com",
-    url: "https://widgetwhats.com/app/uploads/2019//11/free-profile-photo-whatsapp-1.png",
-  },
-];
+import jwt from "jsonwebtoken";
+import bcrypt from "bcrypt";
 
-const hashNum = 10;
-const secret = "secret";
+import * as userRepository from "../data/auth.js";
 
-export const signup = (req, res, next) => {
+const bcryptSaltRounds = 10;
+const jwtSecretKey = "secret";
+const jwtExpiresInDays = "2d";
+
+export const signup = async (req, res, next) => {
   const { username, password, name, email, url } = req.body;
-  if (users.find((user) => user.username == username)) {
-    console.log("SomeOne already have this Username");
-    return res.sendStatus(404);
+  const found = userRepository.findByUsername(username);
+  if (found) {
+    return res.status(409).json({ message: `${username} already exists` });
   }
 
-  const hashed = bcrypt.hashSync(password, hashNum);
+  const hashed = bcrypt.hashSync(password, bcryptSaltRounds);
 
-  const newUser = { username, password: hashed, name, email, url };
-  users.push(newUser);
-  const token = jwt.sign(
-    {
-      id: username,
-      isAdmin: false,
-    },
-    secret
-  );
+  createUser({ username, password: hashed, name, email, url });
+  const token = createJwtToken(username);
   res.status(200).json({ username, token });
 };
 
-export const login = (req, res, next) => {
+export const login = async (req, res, next) => {
   const { username, password } = req.body;
-  const user = users.find((user) => user.username == username);
+  const user = userRepository.findByUsername(username);
   //login을 하면 id, isAdmin을 payload, 임의의 secret을 가지고, option을 주면서 token 생성
-  const result = bcrypt.compareSync(password, user.password);
-  if (!result) {
-    return res.sendStatus(404);
+  
+  if (!user) {
+    return res.status(401).json({ message: "Invalid user or password" });
   }
-  const token = jwt.sign(
-    {
-      id: username,
-      isAdmin: false,
-    },
-    secret
-  );
 
-  return res.status(200).json({ username: user.username, token });
+  const isValidPassword = await bcrypt.compare(password, user.password);
+  if (!isValidPassword) {
+    return res.status(401).json({ message: "Invalid user or password" });
+  }
+  
+  const token = createJwtToken(username);
+
+  return res.status(200).json({ username, token });
 };
 
 export const me = (req, res, next) => {
@@ -61,3 +50,14 @@ export const me = (req, res, next) => {
     res.status(200).send(decoded);
   });
 };
+
+function createJwtToken(id) {
+  return jwt.sign(
+    {
+      id,
+      isAdmin: false,
+    },
+    jwtSecretKey,
+    { expiresIn: jwtExpiresInDays }
+  );
+}
