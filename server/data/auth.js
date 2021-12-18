@@ -10,11 +10,15 @@ let users = [
 ];
 
 export function findByUsername(username) {
-  return users.find((user) => user.username == username);
+  return users.find((user) => user.username === username);
 }
 
 export function createUser(user) {
   const newUser = { id: Date.now().toString(), ...user };
   users.push(user);
   return newUser;
+}
+
+export function findById(id) {
+  return users.find((user) => user.id === id);
 }
