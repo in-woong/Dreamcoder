@@ -1,27 +1,33 @@
 import jwt from "jsonwebtoken";
+import { jwtSecretKey } from "../controller/auth.js";
 
 import * as userRepository from "../data/auth.js";
 
 const AUTH_ERROR = { message: "Authentication Error" };
 
-export const isAuth = (req, res, next) => {
-  const authHeader = req.get("Authorizatoin");
-  if (!(authHeader && authHeader.startWith("Bearer "))) {
+const isAuth = async (req, res, next) => {
+  console.log("token");
+  const authHeader = req.get("Authorization");
+  if (!(authHeader && authHeader.startsWith("Bearer "))) {
     return res.status(401).json(AUTH_ERROR);
   }
 
   const token = authHeader.split(" ")[1];
 
-  jwt.verify(token, secret, (error, decoded) => {
+
+  jwt.verify(token, jwtSecretKey, (error, decoded) => {
     if (error) {
       return res.status(401).json(AUTH_ERROR);
     }
-    const user = await userRepository.findByUsername(decoded.id);
+    const user = userRepository.findByUsername(decoded.id);
     if (!user) {
       return res.status(401).json(AUTH_ERROR);
     }
 
+    req.token = token;
     req.userId = user.id;
     next();
   });
 };
+
+export default isAuth;
