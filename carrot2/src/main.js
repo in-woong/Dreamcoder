@@ -1,5 +1,9 @@
 "use strict";
 
+import Popup from "./popup.js";
+
+const gamePopup = new Popup();
+
 const bugSound = new Audio("./sound/bug_pull.mp3");
 const carrotSound = new Audio("./sound/carrot_pull.mp3");
 const bgSound = new Audio("./sound/bg.mp3");
@@ -13,10 +17,6 @@ const playBtn = document.querySelector(".game__play");
 const timerSpan = document.querySelector(".game__timer");
 const gameScore = document.querySelector(".game__score");
 const icon = document.querySelector(".fas");
-
-const popup = document.querySelector(".pop-up");
-const popupMesg = document.querySelector(".popup__messg");
-const popupReplay = document.querySelector(".pop-up__replay");
 
 const carrotSize = 80;
 const GAME_DURATION_SEC = 10;
@@ -36,15 +36,16 @@ function initGame() {
   addItem("bugImg", "./img/bug.png", CARROT_COUNT);
   addItem("carrotImg", "./img/carrot.png", BUG_COUNT);
   startGameTimer();
+  unHidePlayBtn();
   playSound(bgSound);
 }
 
 function endGame(win) {
   started = false;
   if (win) {
-    showPopupWithText("YOU WIN😍");
+    gamePopup.showPopupWithText("YOU WIN😍");
   } else {
-    showPopupWithText("YOU LOSE FUCK🐓");
+    gamePopup.showPopupWithText("YOU LOSE FUCK🐓");
   }
   hidePlayBtn();
   stopGameTimer();
@@ -55,12 +56,13 @@ function endGame(win) {
 function stopGame() {
   started = false;
   stopGameTimer();
-  showPopupWithText("YOU LOSE");
+  gamePopup.showPopupWithText("YOU LOSE");
   hidePlayBtn();
   pauseSound(bgSound);
 }
 
 playBtn.addEventListener("click", () => {
+  console.log("fuck")
   if (!started) {
     initGame();
   } else {
@@ -68,10 +70,9 @@ playBtn.addEventListener("click", () => {
   }
 });
 
-popupReplay.addEventListener("click", () => {
+gamePopup.setClickListener(() => {
   initGame();
   unHidePlayBtn();
-  hidePopUp();
 });
 
 const addItem = (className, ImgPath, count) => {
@@ -135,14 +136,7 @@ function updateTimerText(timer) {
   let time = `${min < 10 ? `0${min}` : min} : ${sec < 10 ? `0${sec}` : sec}`;
   timerSpan.innerText = time;
 }
-function showPopupWithText(text) {
-  popup.classList.remove("hidden");
-  popupMesg.innerText = text;
-}
 
-function hidePopUp() {
-  popup.classList.add("hidden");
-}
 //4. 게임 정지하기
 
 field.addEventListener("click", (event) => {
