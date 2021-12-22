@@ -1,8 +1,9 @@
 "use strict";
 
 import Popup from "./popup.js";
-
+import Field from "./fidle.js";
 const gamePopup = new Popup();
+const gameField = new Field(5,5);
 
 const bugSound = new Audio("./sound/bug_pull.mp3");
 const carrotSound = new Audio("./sound/carrot_pull.mp3");
@@ -18,10 +19,10 @@ const timerSpan = document.querySelector(".game__timer");
 const gameScore = document.querySelector(".game__score");
 const icon = document.querySelector(".fas");
 
-const carrotSize = 80;
+// const carrotSize = 80;
 const GAME_DURATION_SEC = 10;
-const CARROT_COUNT = 5;
-const BUG_COUNT = 5;
+// const CARROT_COUNT = 5;
+// const BUG_COUNT = 5;
 
 let setTime;
 let started = false;
@@ -32,9 +33,10 @@ function initGame() {
   started = true;
   showStopIcon();
   updateScoreBoard(score);
-  field.innerHTML = "";
-  addItem("bugImg", "./img/bug.png", CARROT_COUNT);
-  addItem("carrotImg", "./img/carrot.png", BUG_COUNT);
+  // field.innerHTML = "";
+  // addItem("bugImg", "./img/bug.png", CARROT_COUNT);
+  // addItem("carrotImg", "./img/carrot.png", BUG_COUNT);
+  gameField.setItems();
   startGameTimer();
   unHidePlayBtn();
   playSound(bgSound);
@@ -92,9 +94,7 @@ const addItem = (className, ImgPath, count) => {
     field.appendChild(item);
   }
 };
-function getRandomInt(min, max) {
-  return Math.random() * (max - min) + min; //최댓값은 제외, 최솟값은 포함
-}
+
 //2. 게임시작하기
 function showPlayIcon() {
   icon.classList.remove("fa-stop");
@@ -139,22 +139,23 @@ function updateTimerText(timer) {
 
 //4. 게임 정지하기
 
-field.addEventListener("click", (event) => {
-  const target = event.target;
-  if (target.matches(".carrotImg")) {
-    score++;
-    target.remove();
-    playSound(bugSound);
-    updateScoreBoard(score);
-    if (score == CARROT_COUNT) {
-      endGame(true);
-    }
-  } else if (target.matches(".bugImg")) {
-    target.remove();
-    playSound(carrotSound);
-    endGame(false);
-  }
-});
+// field.addEventListener("click", (event) => {
+//   const target = event.target;
+//   if (target.matches(".carrotImg")) {
+//     score++;
+//     target.remove();
+//     playSound(bugSound);
+//     updateScoreBoard(score);
+//     if (score == CARROT_COUNT) {
+//       playSound(winSound);
+//       endGame(true);
+//     }
+//   } else if (target.matches(".bugImg")) {
+//     target.remove();
+//     playSound(carrotSound);
+//     endGame(false);
+//   }
+// });
 
 function updateScoreBoard(score) {
   gameScore.innerText = CARROT_COUNT - score;
