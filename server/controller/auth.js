@@ -5,7 +5,7 @@ import * as userRepository from "../data/auth.js";
 
 const bcryptSaltRounds = 10;
 export const jwtSecretKey = "secret";
-const jwtExpiresInDays = "2";
+const jwtExpiresInDays = "2d";
 
 export const signup = async (req, res, next) => {
   const { username, password, name, email, url } = req.body;
