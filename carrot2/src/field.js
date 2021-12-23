@@ -1,3 +1,5 @@
+import * as Sound from "./sound.js";
+
 export default class Field {
   constructor(carrotCount, bugCount) {
     this.CARROT_COUNT = carrotCount;
@@ -38,12 +40,12 @@ export default class Field {
     const target = event.target;
     if (target.matches(".carrotImg")) {
       target.remove();
-      this.onItemClick&&this.onItemClick("carrot")
-      playSound(bugSound);
-      }else if (target.matches(".bugImg")) {
+      this.onItemClick && this.onItemClick("carrot");
+      Sound.playBugSound();
+    } else if (target.matches(".bugImg")) {
       target.remove();
-      this.onItemClick&&this.onItemClick("bug")
-      playSound(carrotSound);
+      this.onItemClick && this.onItemClick("bug");
+      Sound.playCarrotSound();
     }
   };
 }

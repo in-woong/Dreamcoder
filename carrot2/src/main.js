@@ -2,17 +2,9 @@
 
 import Popup from "./popup.js";
 import Field from "./field.js";
+import * as Sound from "./sound.js";
 const gamePopup = new Popup();
 const gameField = new Field(5, 5);
-
-const bugSound = new Audio("./sound/bug_pull.mp3");
-const carrotSound = new Audio("./sound/carrot_pull.mp3");
-const bgSound = new Audio("./sound/bg.mp3");
-const winSound = new Audio("./sound/gmae_win.mp3");
-const alertSound = new Audio("./sound/alert.wav");
-
-const field = document.querySelector(".game__field");
-const fieldRect = field.getBoundingClientRect();
 
 const playBtn = document.querySelector(".game__play");
 const timerSpan = document.querySelector(".game__timer");
@@ -36,7 +28,7 @@ function initGame() {
   gameField.setItems();
   startGameTimer();
   unHidePlayBtn();
-  playSound(bgSound);
+  Sound.playBGSound();
 }
 
 function endGame(win) {
@@ -48,8 +40,8 @@ function endGame(win) {
   }
   hidePlayBtn();
   stopGameTimer();
-  pauseSound(bgSound);
-  playSound(alertSound);
+  Sound.pauseBGSound();
+  Sound.playAlertSound();
 }
 
 function stopGame() {
@@ -57,7 +49,7 @@ function stopGame() {
   stopGameTimer();
   gamePopup.showPopupWithText("YOU LOSE");
   hidePlayBtn();
-  pauseSound(bgSound);
+  Sound.pauseBGSound();
 }
 
 gameField.setItemClick(onItemClick);
@@ -129,12 +121,3 @@ function updateScoreBoard(score) {
   gameScore.innerText = CARROT_COUNT - score;
 }
 //5. 게임 마무리하기
-
-function playSound(sound) {
-  sound.currentTime = 0;
-  sound.play();
-}
-
-function pauseSound(sound) {
-  sound.pause();
-}
