@@ -4,14 +4,18 @@ export default class Field {
     this.BUG_COUNT = bugCount;
     this.carrotSize = 80;
     this.field = document.querySelector(".game__field");
-    this.fieldRect = field.getBoundingClientRect();
+    this.fieldRect = this.field.getBoundingClientRect();
     this.field.addEventListener("click", this.onClick);
   }
 
   setItems() {
     this.field.innerHTML = "";
-    this._addItem("bugImg", "./img/bug.png", CARROT_COUNT);
-    this._addItem("carrotImg", "./img/carrot.png", BUG_COUNT);
+    this._addItem("bugImg", "./img/bug.png", this.CARROT_COUNT);
+    this._addItem("carrotImg", "./img/carrot.png", this.BUG_COUNT);
+  }
+
+  setItemClick(onItemClick) {
+    this.onItemClick = onItemClick;
   }
   _addItem = (className, ImgPath, count) => {
     for (let i = 1; i <= count; i++) {
@@ -21,8 +25,8 @@ export default class Field {
       item.style.position = "absolute";
       const x1 = 0;
       const y1 = 0;
-      const x2 = this.fieldRect.width - carrotSize;
-      const y2 = this.fieldRect.height - carrotSize;
+      const x2 = this.fieldRect.width - this.carrotSize;
+      const y2 = this.fieldRect.height - this.carrotSize;
       const y = getRandomInt(y1, y2);
       const x = getRandomInt(x1, x2);
       item.style.top = `${y}px`;
@@ -33,18 +37,13 @@ export default class Field {
   onClick = (event) => {
     const target = event.target;
     if (target.matches(".carrotImg")) {
-      score++;
       target.remove();
+      this.onItemClick&&this.onItemClick("carrot")
       playSound(bugSound);
-      updateScoreBoard(score);
-      if (score == CARROT_COUNT) {
-        playSound(winSound);
-        endGame(true);
-      }
-    } else if (target.matches(".bugImg")) {
+      }else if (target.matches(".bugImg")) {
       target.remove();
+      this.onItemClick&&this.onItemClick("bug")
       playSound(carrotSound);
-      endGame(false);
     }
   };
 }
