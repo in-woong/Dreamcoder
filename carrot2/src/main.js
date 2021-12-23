@@ -1,9 +1,13 @@
 "use strict";
 
 import Popup from "./popup.js";
-import Game from "./game.js";
+import GameBuilder, { Reason } from "./game.js";
 const gamePopup = new Popup();
-const game = new Game();
+const game = new GameBuilder()
+  .carrotCount(5)
+  .bugCount(5)
+  .gameDurationSec(3)
+  .build();
 
 gamePopup.setClickListener(() => {
   game.initGame();
@@ -12,13 +16,13 @@ gamePopup.setClickListener(() => {
 game.setGameStopListener((reason) => {
   let message;
   switch (reason) {
-    case "win":
+    case Reason.win:
       message = "YOU WIN😍";
       break;
-    case "lose":
+    case Reason.lose:
       message = "YOU LOSE FUCK🐓";
       break;
-    case "cancel":
+    case Reason.cancel:
       message = "Do it Again";
       break;
     default:
