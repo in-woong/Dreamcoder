@@ -2,6 +2,7 @@ import express from "express";
 import helmet from "helmet";
 import morgan from "morgan";
 import cors from "cors";
+import dotenv from "dotenv";
 
 import tweetsRouter from "./router/tweetRouter.js";
 import authRouter from "./router/authRouter.js";

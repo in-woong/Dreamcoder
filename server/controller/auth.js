@@ -2,10 +2,7 @@ import jwt from "jsonwebtoken";
 import bcrypt from "bcrypt";
 
 import * as userRepository from "../data/auth.js";
-
-const bcryptSaltRounds = 10;
-export const jwtSecretKey = "secret";
-const jwtExpiresInDays = "2d";
+import { config } from "../config.js";
 
 export const signup = async (req, res, next) => {
   const { username, password, name, email, url } = req.body;
@@ -14,7 +11,7 @@ export const signup = async (req, res, next) => {
     return res.status(409).json({ message: `${username} already exists` });
   }
 
-  const hashed = bcrypt.hashSync(password, bcryptSaltRounds);
+  const hashed = bcrypt.hashSync(password, config.bcrypt.saltRounds);
 
   userRepository.createUser({
     username,
@@ -61,7 +58,7 @@ function createJwtToken(id) {
       id,
       isAdmin: false,
     },
-    jwtSecretKey,
-    { expiresIn: jwtExpiresInDays }
+    config.jwt.secretKey,
+    { expiresIn: config.jwt.expiresInSec }
   );
 }
