@@ -2,7 +2,8 @@ import { Component } from 'react';
 import './app.css';
 import Habits from './components/habits';
 import Navbar from './components/navbar';
-import Input from './components/input';
+
+import Reset from './components/reset';
 
 class App extends Component {
   state = {
@@ -34,8 +35,15 @@ class App extends Component {
     //제외하기 특정 인덱스가 있는 값을 제외하기
   };
 
+  handleAdd = (name) => {
+    const habits = [
+      { id: Date.now().toString(), name, count: 0 },
+      ...this.state.habits,
+    ];
+    this.setState({ habits });
+  };
+
   submit = () => {
-    console.log('submit');
     const actForm = document.actForm;
     const actName = actForm.actName.value;
     actForm.actName.value = '';
@@ -46,17 +54,24 @@ class App extends Component {
     this.setState({ habits });
   };
 
+  reset = () => {
+    const habits = [];
+    this.setState({ habits });
+  };
+
   render() {
     return (
       <>
         <Navbar state={this.state} />
-        <Input submit={this.submit} />
+        
         <Habits
           state={this.state}
-          handleIncrement={this.handleIncrement}
-          handleDecrement={this.handleDecrement}
-          handleDelete={this.handleDelete}
+          onIncrement={this.handleIncrement}
+          onDecrement={this.handleDecrement}
+          onDelete={this.handleDelete}
+          onAdd={this.handleAdd}
         />
+        <Reset reset={this.reset} />
       </>
     );
   }

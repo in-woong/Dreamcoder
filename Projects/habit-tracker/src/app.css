@@ -1,8 +1,12 @@
-.nav-text{
+* {
+  box-sizing: border-box;
+}
+
+.nav-text {
   font-size: 2.5rem;
   padding: 0.5em;
 }
-.nav-count{
+.nav-count {
   display: inline-block;
   text-align: center;
   font-size: 2rem;
