@@ -43,19 +43,11 @@ class App extends Component {
     this.setState({ habits });
   };
 
-  submit = () => {
-    const actForm = document.actForm;
-    const actName = actForm.actName.value;
-    actForm.actName.value = '';
-    const habits = [
-      { id: Date.now().toString(), name: actName, count: 0 },
-      ...this.state.habits,
-    ];
-    this.setState({ habits });
-  };
-
-  reset = () => {
-    const habits = [];
+  handleReset = () => {
+    const habits = this.state.habits.map((habit) => {
+      habit.count = 0;
+      return habit;
+    });
     this.setState({ habits });
   };
 
@@ -63,7 +55,7 @@ class App extends Component {
     return (
       <>
         <Navbar state={this.state} />
-        
+
         <Habits
           state={this.state}
           onIncrement={this.handleIncrement}
@@ -71,7 +63,7 @@ class App extends Component {
           onDelete={this.handleDelete}
           onAdd={this.handleAdd}
         />
-        <Reset reset={this.reset} />
+        <Reset onReset={this.handleReset} />
       </>
     );
   }

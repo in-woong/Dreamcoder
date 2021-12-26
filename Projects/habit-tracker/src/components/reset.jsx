@@ -4,7 +4,7 @@ class reset extends Component {
 
     render() {
         return (
-            <button className='reset-btn' onClick={()=>this.props.reset()}>
+            <button className='reset-btn' onClick={()=>this.props.onReset()}>
                 Reset
             </button>
         );
