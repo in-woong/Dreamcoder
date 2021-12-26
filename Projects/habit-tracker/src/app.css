@@ -1,3 +1,20 @@
+.nav-text{
+  font-size: 2.5rem;
+  padding: 0.5em;
+}
+.nav-count{
+  display: inline-block;
+  text-align: center;
+  font-size: 2rem;
+  width: 2.5rem;
+  height: 2.5rem;
+  line-height: 2.5rem;
+  margin-left: 0.2em;
+  margin-right: 0.5em;
+  background-color: darkseagreen;
+  color: white;
+  border-radius: 50%;
+}
 button {
   outline: none;
   border: 0;
