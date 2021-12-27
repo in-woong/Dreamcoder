@@ -3,8 +3,6 @@ import './app.css';
 import Habits from './components/habits';
 import Navbar from './components/navbar';
 
-import Reset from './components/reset';
-
 class App extends Component {
   state = {
     habits: [
@@ -15,17 +13,23 @@ class App extends Component {
   };
 
   handleIncrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 };
+      }
+      return item;
+    });
     this.setState({ habits });
   };
 
   handleDecrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count =
-      habits[index].count <= 1 ? 0 : habits[index].count - 1;
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        const count = habit.count - 1;
+        return { ...habit, count: count < 0 ? 0 : count };
+      }
+      return item;
+    });
     this.setState({ habits });
   };
 
@@ -44,9 +48,9 @@ class App extends Component {
   };
 
   handleReset = () => {
-    const habits = this.state.habits.map((habit) => {
-      habit.count = 0;
-      return habit;
+    const habits = this.state.habits.map((item) => {
+      item.count = 0;
+      return { ...item };
     });
     this.setState({ habits });
   };
@@ -55,15 +59,14 @@ class App extends Component {
     return (
       <>
         <Navbar state={this.state} />
-
         <Habits
           state={this.state}
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}
           onDelete={this.handleDelete}
           onAdd={this.handleAdd}
+          onReset={this.handleReset}
         />
-        <Reset onReset={this.handleReset} />
       </>
     );
   }

@@ -1,6 +1,6 @@
 import React, { Component } from 'react';
 import Habit from './habit';
-import Input from './input';
+import HabitAddForm from './habitAddForm';
 
 class Habits extends Component {
   handleIncrement = (habit) => {
@@ -16,9 +16,10 @@ class Habits extends Component {
     this.props.onAdd(name);
   };
   render() {
+    console.log('habits');
     return (
       <>
-        <Input onAdd={this.handleAdd} />
+        <HabitAddForm onAdd={this.handleAdd} />
         <ul>
           {this.props.state.habits.map((habit) => (
             <Habit
@@ -30,6 +31,9 @@ class Habits extends Component {
             />
           ))}
         </ul>
+        <button className="habits-reset" onClick={this.props.onReset}>
+          Reset All
+        </button>
       </>
     );
   }

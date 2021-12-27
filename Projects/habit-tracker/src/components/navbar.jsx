@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 
 class navbar extends Component {
   render() {
+    console.log("Navbar")
     let count = 0;
     this.props.state.habits.map((habit) => (count += habit.count));
     return (
