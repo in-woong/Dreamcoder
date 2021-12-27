@@ -20,6 +20,10 @@ onclick <-> onClick
 데이터를 가진 곳에서 데이터를 처리하는 함수를 가지자.
 
 ## state의 값을 직접적으로 수정하는 것은 좋지 않다!
+1. setState는 비동기적으로 동작한다.
+2. PureComponent에서는 정상적으로 동작하지 않는다(값을 직접 변경하면 reference가 변동되지 않기 때문)
+
+
 
 ## 상위 Class에서는 함수를 작성, 및 Logic을 구성하고, 실재하는 부분에서 데이터를 받고, 데이터를 함수에 넣자
 
@@ -44,3 +48,13 @@ Object의 reference만 검사
 
 PureComponent == memo
 props를 변경하지 않으면 component를 업데이트 하지 않아도 될 때
+
+
+## React Hook
+함수형 컴포넌트에서는 return만이 아니라, state들이 선언되는 부분까지도 다 재 실행된다
+<-> class component는 rendering 부분만 재실행이 계속 되었다
+
+useState
+useRef(React.createRef)
+useCallback
+useEffect 두번째 인자가 빈칸이면 처음에만 반응
