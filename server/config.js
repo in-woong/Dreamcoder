@@ -6,6 +6,7 @@ function required(key, defaultValue = undefined) {
   if (value == null) {
     throw new Error(`Key ${key} is undefined`);
   }
+  return value
 }
 
 export const config = {
@@ -19,4 +20,10 @@ export const config = {
   host: {
     port: parseInt(required("HOST_PORT", 8080)),
   },
+  db:{
+    host:required("DB_HOST"),
+    user:required("DB_USER"),
+    databse:required("DB_DATABASE"),
+    password:required("DB_PASSWORD"),
+  }
 };
