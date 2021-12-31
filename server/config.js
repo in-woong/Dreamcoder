@@ -25,5 +25,6 @@ export const config = {
     user:required("DB_USER"),
     databse:required("DB_DATABASE"),
     password:required("DB_PASSWORD"),
-  }
+    url: required("DB_URL")
+  },
 };

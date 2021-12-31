@@ -5,7 +5,7 @@ import cors from 'cors';
 
 import tweetsRouter from './router/tweetRouter.js';
 import authRouter from './router/authRouter.js';
-import { db } from './db/database.js';
+import { connectDB} from './db/database.js';
 import { config } from './config.js';
 
 const app = express();
@@ -27,5 +27,9 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: 'There are something wrong' });
 });
-db.getConnection().then();
-app.listen(config.host.port);
+connectDB()
+  .then((db) => {
+    console.log('init!', db);
+    app.listen(config.host.port);
+  })
+  .catch(console.error);
