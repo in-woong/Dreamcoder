@@ -14,3 +14,4 @@
 
  # 문제점
 1. class Component로 그대로 만들려고 했으나, fetch값을 어떻게 받아올 지 해결하지 못함
+2. router를 만드는 과정 중  hook call problems 발생
