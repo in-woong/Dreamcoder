@@ -27,9 +27,11 @@ app.use((err, req, res, next) => {
   console.error(err);
   res.status(500).json({ message: 'There are something wrong' });
 });
+
 connectDB()
   .then((db) => {
-    console.log('init!', db);
-    app.listen(config.host.port);
+    console.log('init!');
   })
   .catch(console.error);
+  
+  app.listen(config.host.port);

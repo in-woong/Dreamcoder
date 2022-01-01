@@ -1,24 +1,27 @@
-let users = [
-  {
-    id: "1",
-    username: "ellie",
-    password: "$2b$10$4HRXP76rkUqDOY9/bUa0duaeI8BebbuhV.BSuO00Rn3ONAcXi6UD.",
-    name: "Ellie",
-    email: "ellie@gmail.com",
-    url: "https://widgetwhats.com/app/uploads/2019//11/free-profile-photo-whatsapp-1.png",
-  },
-];
+import { getUsers } from '../db/database.js';
+import MongoDb from 'mongodb';
+const ObjectId = MongoDb.ObjectId;
 
 export function findByUsername(username) {
-  return users.find((user) => user.username === username);
-}
-
-export function createUser(user) {
-  const newUser = { id: Date.now().toString(), ...user };
-  users.push(user);
-  return newUser;
+  return getUsers() //
+    .findOne({ username })
+    .then(mapOptionalUser);
 }
 
 export function findById(id) {
-  return users.find((user) => user.id === id);
+  return getUsers()
+    .findOne({ _id: new ObjectId(id) })
+    .then(mapOptionalUser);
+}
+export function createUser(user) {
+  return getUsers()
+    .insertOne(user)
+    .then((data) => {
+      return (user = data.insertedId.toString());
+    });
+}
+
+function mapOptionalUser(user) {
+  console.log('user', user._id);
+  return user ? { ...user, id: user._id } : null;
 }
