@@ -7,7 +7,7 @@ class Youtube {
     };
   }
 
-  mostPopular() {
+  async mostPopular() {
     return fetch(
       `https://youtube.googleapis.com/youtube/v3/videos?part=snippet&chart=mostPopular&maxResults=25&key=${this.key}`,
       this.getRequestOptions
@@ -16,7 +16,7 @@ class Youtube {
       .then((result) => result.items);
   }
 
-  search(query) {
+  async search(query) {
     return fetch(
       `https://youtube.googleapis.com/youtube/v3/search?q=${query}&type=video&part=snippet &maxResults=25&key=${this.key}`,
       this.getRequestOptions
