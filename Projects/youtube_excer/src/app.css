@@ -1,0 +1,56 @@
+.App {
+  text-align: center;
+  text-align: center;
+  box-sizing: border-box;
+}
+.root{
+  text-align: center;
+  margin:auto;
+}
+.youtube {
+text-align: center;
+  width:80%;
+  margin:auto;
+}
+.header {
+  width:100%;
+  display: flex;
+  justify-content: center;
+  align-items:center;
+}
+.header_serch-form{
+  border-radius: 50px;
+  background-color: tomato;
+  margin:0;
+}
+
+.header_input{
+  width:80%;
+  background-color: tomato;
+  color:white;
+  outline-style: none;
+}
+
+.video_list{
+  display:flex;
+  flex-wrap:wrap;
+  margin:0;
+  padding:0;
+}
+
+.video_item{
+  display:flex;
+  list-style: none;
+  width:50%;
+  padding: 10px 0px;
+}
+.video_item_desc{
+  width:100%;
+  display:flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.video_item_img{
+  width:40%;
+}
