@@ -1,7 +1,7 @@
 import { memo } from 'react';
 const video = (props) => {
   return (
-    <li className='video_item'>
+    <li className='video_item' >
       <img
         className='video_item_img'
         src={props.video.snippet.thumbnails.high.url}

@@ -1,14 +1,8 @@
 import React, { useState, useEffect } from 'react';
+import Videos from '../components/video_list';
 
-import Header from './header';
-import Videos from './videos';
-
-const Search=()=> {
-  const [input, setInput] = useState('');
+const Search = (props) => {
   const [videos, setVideos] = useState([]);
-
-  const formRef = React.createRef();
-  const inputRef = React.createRef();
 
   const baseURL = 'https://youtube.googleapis.com/youtube/v3/';
   const maxResults = 25;
@@ -21,20 +15,20 @@ const Search=()=> {
     };
 
     fetch(
-      `${baseURL}${input ? 'search' : 'videos'}?part=snippet${
-        input ? `&q=${input}` : '&chart=mostPopular'
+      `${baseURL}${props.input ? 'search' : 'videos'}?part=snippet${
+        props.input ? `&q=${props.input}` : '&chart=mostPopular'
       }&maxResults=${maxResults}&key=${key}`,
       requestOptions
     )
       .then((response) => response.json())
       .then((result) => setVideos(result.items));
-  }, [input]);
+  }, [props.input]);
+  
   return (
     <div className='youtube'>
-      <Header setInput={setInput} formRef={formRef} inputRef={inputRef} />
-      <Videos input={input} videos={videos} />
+      <Videos input={props.input} videos={videos} />
     </div>
   );
-}
+};
 
 export default Search;

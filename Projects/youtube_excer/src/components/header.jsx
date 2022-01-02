@@ -4,20 +4,23 @@ import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
 const header = memo((props) => {
+  const formRef = React.createRef();
+  const inputRef = React.createRef();
+
   const onSubmit = (event) => {
     event.preventDefault();
-    const search = props.inputRef.current.value;
+    const search = inputRef.current.value;
     props.setInput(search);
-    props.formRef.current.reset();
+    formRef.current.reset();
   };
 
   return (
     <header className='header'>
       <FontAwesomeIcon className='icon_youtube' icon={faYoutube} size='3x' />
       <span className='header_span'>Youtube</span>
-      <form className='header_search-form' ref={props.formRef}>
+      <form className='header_search-form' ref={formRef}>
         <input
-          ref={props.inputRef}
+          ref={inputRef}
           type='text'
           placeholder='Search..'
           className='hearder_input'

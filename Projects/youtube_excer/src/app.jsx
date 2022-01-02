@@ -1,18 +1,21 @@
 import './app.css';
-import React from 'react';
-import Search from './components/search';
-import { BrowserRouter, Route, Routes } from 'react-router-dom';
+import React, { useState } from 'react';
+import Search from './pages/search';
+import Video from './pages/video';
+import Header from './components/header';
+import { Route, Routes } from 'react-router-dom';
 
-function App() {
+const App = () => {
+  const [input, setInput] = useState('');
   return (
     <div className='App'>
-      <BrowserRouter>
-        <Routes>
-          <Route path='/' element={<Search/>} />
-        </Routes>
-      </BrowserRouter>
+      <Header input={input} setInput={setInput} />
+      <Routes>
+        <Route path='/' element={<Search input={input}/>}/>
+        <Route path="/video" element={<Video/>}/>
+      </Routes>
     </div>
   );
-}
+};
 
 export default App;

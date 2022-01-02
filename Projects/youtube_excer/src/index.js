@@ -6,8 +6,11 @@ import App from './app';
 import '@fortawesome/fontawesome-free/js/all.js';
 
 ReactDOM.render(
+  <BrowserRouter>
     <React.StrictMode>
       <App />
-    </React.StrictMode>,
+    </React.StrictMode>
+  </BrowserRouter>,
+
   document.getElementById('root')
 );
