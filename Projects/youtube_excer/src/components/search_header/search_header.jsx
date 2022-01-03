@@ -1,4 +1,5 @@
 import React, { memo } from 'react';
+import styles from './search_header.module.css';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faYoutube } from '@fortawesome/free-brands-svg-icons';
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
@@ -15,18 +16,22 @@ const header = memo((props) => {
   };
 
   return (
-    <header className='header'>
-      <FontAwesomeIcon className='icon_youtube' icon={faYoutube} size='3x' />
-      <span className='header_span'>Youtube</span>
-      <form className='header_search-form' ref={formRef}>
+    <header className={styles.header}>
+      <FontAwesomeIcon
+        className={styles.iconYoutube}
+        icon={faYoutube}
+        size='3x'
+      />
+      <span className={styles.span}>Youtube</span>
+      <form className={styles.form_search} ref={formRef}>
         <input
           ref={inputRef}
           type='text'
           placeholder='Search..'
-          className='hearder_input'
+          className={styles.input}
         />
-        <button onClick={onSubmit} className='header_btn'>
-          <FontAwesomeIcon icon={faSearch} className='icon_search' />
+        <button onClick={onSubmit} className={styles.btn}>
+          <FontAwesomeIcon icon={faSearch} className={styles.btnIcon} />
         </button>
       </form>
     </header>

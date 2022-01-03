@@ -1,0 +1,22 @@
+.header {
+  display: flex;
+  width: 80%;
+  margin: auto;
+  justify-content: center;
+  align-items: center;
+}
+.span {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+
+.input {
+  width: 90%;
+  height: 90%;
+}
+.form_search {
+  width: 100%;
+  height: 100%;
+}
