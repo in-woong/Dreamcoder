@@ -1,7 +1,13 @@
 .videos {
-  margin:0;
+  margin: 0;
   display: flex;
   flex-wrap: wrap;
   list-style: none;
   padding-left: 0;
+}
+
+@media screen and (max-width: 900px) {
+  .videos {
+    flex-direction: column;
+  }
 }

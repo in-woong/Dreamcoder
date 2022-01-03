@@ -27,3 +27,9 @@ div, btn element 혹은 이벤트 핸들러를 전달하는 경우에는 re-rend
 계획하고
 검증하고
 코드를 들어가자
+
+# fetch web APIs 와 Axios 라이브러리
+axios 장점:
+1. 가독성
+2. json()를 라이브러리 자체에서 해준다
+3. XMLHttpRequest도 쓴다
