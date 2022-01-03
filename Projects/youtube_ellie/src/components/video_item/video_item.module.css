@@ -1,6 +1,13 @@
 .container {
-  width: 50%;
+  width: 100%;
   padding: 0.2em;
+}
+
+.container.list {
+  width: 100%;
+}
+.container.grid {
+  width: 50%;
 }
 .video {
   box-shadow: 3px 3px 5px 0px rgba(163, 163, 163, 1);
