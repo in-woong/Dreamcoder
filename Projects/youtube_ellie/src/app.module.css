@@ -12,7 +12,13 @@
 .list {
   flex: 1 1 30%;
 }
-.loading{
-  width:100vh;
+.loading {
+  width: 100vh;
   text-align: center;
+}
+
+@media screen and (max-width: 900px) {
+  .content {
+    flex-direction: column;
+  }
 }

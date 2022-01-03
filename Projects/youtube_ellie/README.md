@@ -15,3 +15,15 @@ MVC, MVVM, MVI, MVP등의 디자인 패턴을 유지해야한다.
 ** 리액트 컴포넌트는 가장 멍청하게 만들고 네트워크 처리, 스토리지 사용 등은 따로 class를 만든다 **
 
 - promise를 반환할 때는 async를 달아 놓아서 promise를 리턴해 줄 수 있도록 하자.
+
+# useCallback 사용처
+1. function component에서는 class가 불려올 때마다 변수들이 다시 생성된다. 그럼 그 변수들을 props로 가지는 자식 component들도 다시 생성이 된다.
+이렇게 자식 컴포넌트가 계속해서 re-rendering이 되는 것을 방지해주기 위해 useCallback을 사용핟다.
+하지만 useCallback에 있는 콜백함수는 메모리에 계속 저장이 되어있기 때문에 메모리를 많이 잡아먹어 신중히 사용해 주어야 한다.
+자식 컴포넌트에 props를 전달할 때는 사용해도 되지만
+div, btn element 혹은 이벤트 핸들러를 전달하는 경우에는 re-rendering이 되지 않기 때문에 사용하지 않는다.
+
+# 무엇을 할때
+계획하고
+검증하고
+코드를 들어가자

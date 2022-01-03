@@ -13,6 +13,9 @@ function App({ youtube }) {
   const selectVideo = (video) => {
     setSelectedVideo(video);
   };
+  const goHome = () => {
+    setSelectedVideo(null);
+  };
 
   const search = (query) => {
     setIsLoading(true);
@@ -31,30 +34,32 @@ function App({ youtube }) {
       .mostPopular() //
       .then((videos) => {
         setIsLoading(false);
-        setVideos(videos)});
+        setVideos(videos);
+      });
   }, []);
 
   return (
     <div className={styles.app}>
-      <SearchHeader onSearch={search} />
-      {!isLoading?
-        (<div className={styles.content}>
-        {selectedVideo && (
-          <section className={styles.detail}>
-            <VideoDetail selectedVideo={selectedVideo} />
+      <SearchHeader onSearch={search} goHome={goHome} />
+      {!isLoading ? (
+        <div className={styles.content}>
+          {selectedVideo && (
+            <section className={styles.detail}>
+              <VideoDetail selectedVideo={selectedVideo} />
+            </section>
+          )}
+          <section className={styles.list}>
+            <VideoList
+              videos={videos}
+              selectVideo={selectVideo}
+              display={selectedVideo ? 'list' : 'grid'}
+            />
           </section>
-        )}
-        <section className={styles.list}>
-          <VideoList
-            videos={videos}
-            selectVideo={selectVideo}
-            display={selectedVideo ? 'list' : 'grid'}
-          />
-        </section>
-      </div>):(<h1 className={styles.loading}>IsLoading</h1>)
-
-      }
-          </div>
+        </div>
+      ) : (
+        <h1 className={styles.loading}>IsLoading</h1>
+      )}
+    </div>
   );
 }
 
