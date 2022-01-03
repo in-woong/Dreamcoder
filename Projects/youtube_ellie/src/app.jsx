@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import styles from './app.module.css';
 
 import SearchHeader from './components/search_header/search_header';
@@ -16,8 +16,7 @@ function App({ youtube }) {
   const goHome = () => {
     setSelectedVideo(null);
   };
-
-  const search = (query) => {
+  const search = useCallback((query) => {
     setIsLoading(true);
     youtube
       .search(query) //
@@ -26,7 +25,7 @@ function App({ youtube }) {
         setSelectedVideo(null);
         setIsLoading(false);
       });
-  };
+  }, []);
 
   useEffect(() => {
     setIsLoading(true);
