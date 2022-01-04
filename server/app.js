@@ -5,14 +5,19 @@ import cors from 'cors';
 
 import tweetsRouter from './router/tweetRouter.js';
 import authRouter from './router/authRouter.js';
-import { connectDB} from './db/database.js';
+import { connectDB } from './db/database.js';
 import { config } from './config.js';
 
 const app = express();
 
+const corsOption = {
+  origin: config.cors.allowedOrigin,
+  optionsSuccessStatus: 200,
+}
+
 app.use(express.json());
 app.use(helmet());
-app.use(cors());
+app.use(cors(corsOption));
 app.use(morgan('tiny'));
 
 app.use('/tweets', tweetsRouter);
@@ -30,8 +35,7 @@ app.use((err, req, res, next) => {
 
 connectDB()
   .then((db) => {
-    console.log('init!');
+    console.log(`Server is started...${new Date()}`);
+    app.listen(config.port);
   })
   .catch(console.error);
-  
-  app.listen(config.host.port);
