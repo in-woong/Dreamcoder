@@ -1,13 +1,11 @@
 import { config } from '../config.js';
+import Mongoose from 'mongoose';
 
-import MongoDb from 'mongodb';
-let db;
 export async function connectDB() {
-  return MongoDb.MongoClient.connect(config.db.url) //
-    .then((client) => {
-      db = client.db();
-    });
+  return Mongoose.connect(config.db.url) //
 }
+
+// TODO:(inwoong) Delete blow
 
 export function getUsers() {
   return db.collection('users');
@@ -15,4 +13,13 @@ export function getUsers() {
 
 export function getTweets() {
   return db.collection('tweets');
+}
+
+
+export function useVirtualId(Schema) {
+  Schema.virtual("id").get(function () {
+    return this._id.toString();
+  })
+  Schema.set("toJSON", { virtuals: true });
+  Schema.set("toObject", { virtuals: true });
 }
