@@ -1,0 +1,75 @@
+@value makerGreen from "./common/colors.css";
+@value makerWhite from "./common/colors.css";
+
+main {
+  height: 400px;
+  width: 500px;
+}
+
+.header {
+  height: 100px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  background-color: makerGreen;
+}
+
+.header_img {
+  height: 30px;
+}
+
+.header_span {
+  margin-top: 10px;
+  font-size: 27px;
+  font-weight: 700;
+  color: makerWhite;
+}
+
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 240px;
+  background-color: makerWhite;
+}
+
+.login_span {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.login_SSO {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size:20px;
+}
+.login_google, .login_github{
+  text-align: center;
+  margin:0 30px;
+  width:95%;
+  border: 2px solid makerGreen;
+  padding:10px;
+  border-radius:15px;
+  margin-bottom:15px;
+  cursor: pointer;
+}
+
+
+.footer {
+  height: 60px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: makerGreen;
+}
+
+.footer_span {
+  font-size: 15px;
+  font-weight: 500;
+  color: makerWhite;
+}
