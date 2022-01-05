@@ -62,3 +62,20 @@ POSTCSS란? POST CSS 전처리기 : 중복되는 코드 작성을 최소화 하�
 3. 동영상 보는 중에는 오른 쪽 sticky
 4. 반응형 UI
 
+# chapter 8 
+1. React-Router
+- Routing: selecting a path for traffic in a network
+a mechanism where HTTP requests gets link to specific web pages/ resouces
+- SPA : 하나의 URL로 동작하는 부분적인내용만 업데이트 되는 페이지(Youtube project)
+문제점: 화면을 북마크 하거나, 브라우저 상의 앞으로가기, 뒤로가기 등의 네비게이션이 진행 되지 않는다.
+
+
+[React Router]()
+
+2. Firebase
+SDK: software development kit(public API와 다르게)
+우리가 통신, Firebase에 업데이트 하는 것등을 SDK 함수를 이용해서 할 수 있도록 만들어 줌
+
+3. Cloudinary
+사진을 자동으로 원하는대로 처리해서 Cloud에 업로드 한다.
+사용자의 미디어에 대한 무언가를 자동으로 해주는 서비스
