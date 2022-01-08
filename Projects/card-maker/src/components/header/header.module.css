@@ -1,0 +1,20 @@
+
+.header {
+    height: 100px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: makerGreen;
+  }
+  
+  .header_img {
+    height: 30px;
+  }
+  
+  .header_span {
+    margin-top: 10px;
+    font-size: 27px;
+    font-weight: 700;
+    color: makerWhite;
+  }

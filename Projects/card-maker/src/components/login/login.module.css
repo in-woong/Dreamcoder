@@ -1,0 +1,36 @@
+.login {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+  height: 240px;
+  background-color: makerWhite;
+}
+
+.login_span {
+  font-size: 27px;
+  font-weight: 700;
+}
+
+.login_SSO {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 20px;
+  padding: 0;
+}
+.login_google,
+.login_github {
+  list-style: none;
+  text-align: center;
+  margin: 0 30px;
+
+  width: 95%;
+  border: 2px solid makerGreen;
+  padding: 10px;
+  border-radius: 15px;
+  margin-bottom: 15px;
+  cursor: pointer;
+}
