@@ -3,11 +3,8 @@ import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from "./login.module.css";
 const Login = ({ authService }) => {
-    const onLogin = event => {
-        authService//
-            .login(event.currentTarget.textContent)//
-            .then(console.log)
-    }
+    const onLogin = (event) => authService.login(event.currentTarget.textContent).then(console.log);
+
     return (
         <section className={styles.login}>
             <Header />

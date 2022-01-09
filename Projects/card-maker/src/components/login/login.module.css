@@ -1,3 +1,5 @@
+@value makerGreen, makerWhite from "../../common/colors.css";
+
 .login {
   display: flex;
   flex-direction: column;

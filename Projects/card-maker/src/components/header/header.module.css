@@ -1,3 +1,5 @@
+@value makerGreen, makerWhite from "../../common/colors.css";
+
 
 .header {
     height: 100px;
