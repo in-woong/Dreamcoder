@@ -1,17 +1,18 @@
 import Login from "./components/login/login";
-import Home from "./components/home/home";
+import Maker from "./components/maker/maker";
+import styles from './app.module.css';
 import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 function App({ authService }) {
   return (
-    <main>
+    <div className={styles.app}>
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Login authService={authService} />} />
-          <Route path="/home" element={<Home />} />
+          <Route path="/maker" element={<Maker authService={authService} />} />
         </Routes>
       </BrowserRouter>
-    </main>
+    </div>
   )
 }
 

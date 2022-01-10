@@ -1,4 +1,4 @@
-import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 class AuthService {
     constructor() {
         this.firebaseAuth = getAuth();
@@ -25,6 +25,10 @@ class AuthService {
                 throw new Error(`not supported provider:${providerName}`);
         }
     }
+    onAuthChanged(onUserChanged) {
+        this.firebaseAuth.onAuthStateChanged(user => onUserChanged(user))
+    }
+
 }
 
 export default AuthService;

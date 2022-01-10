@@ -4,7 +4,7 @@ import styles from "./footer.module.css";
 const Footer = (props) => {
     return (
         <footer className={styles.footer}>
-            <span className={styles.footer_span}>code your dream</span>
+            <span className={styles.title}>code your dream</span>
         </footer>
     )
 }
