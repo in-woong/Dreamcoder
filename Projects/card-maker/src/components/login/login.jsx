@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate} from "react-router-dom"
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import styles from "./login.module.css";
 const Login = ({ authService }) => {
-    const onLogin = (event) => authService.login(event.currentTarget.textContent).then(console.log);
-
+    const navigate =useNavigate();
+    const onLogin = (event) => {
+        
+        return authService.login(event.currentTarget.textContent).then(navigate("/home"))};
     return (
         <section className={styles.login}>
             <Header />
