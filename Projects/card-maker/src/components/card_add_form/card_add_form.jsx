@@ -81,6 +81,7 @@ const CardAddForm = ({ createOrUpdateCard, uploadService }) => {
       <textarea className={styles.textarea} ref={messageRef} name='message' />
       <div className={styles.fileInput}>
         <ImageFileInput
+          card={file}
           uploadService={uploadService}
           onFileChange={onFileChange}
         />

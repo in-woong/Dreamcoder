@@ -1,0 +1,17 @@
+@value makerLightGrey, makerPink from '../../common/colors.css';
+.load {
+  width: 20px;
+  height: 20px;
+  border: 2.5px solid makerLightGrey;
+  border-radius: 50%;
+  border-top: 2.5px solid makerPink;
+  animation: spin 2s linear infinite;
+}
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
