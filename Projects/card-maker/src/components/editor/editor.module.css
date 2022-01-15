@@ -6,7 +6,11 @@
 }
 
 .title {
-    width: 100%;
-    text-align: center;
-    color: makerGreen;
-  }
+  width: 100%;
+  text-align: center;
+  color: makerGreen;
+}
+.view {
+  width: 100%;
+  text-align: center;
+}

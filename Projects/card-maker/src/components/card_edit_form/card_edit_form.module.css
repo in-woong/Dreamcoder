@@ -1,0 +1,39 @@
+form {
+  width: 95%;
+  margin: auto;
+
+  display: flex;
+  flex-wrap: wrap;
+}
+.name {
+  flex: 1 1 30%;
+  outline: none;
+}
+.company {
+  flex: 1 1 30%;
+  outline: none;
+}
+.color {
+  flex: 1 1 30%;
+  outline: none;
+}
+.job {
+  flex: 1 1 50%;
+  outline: none;
+}
+.email {
+  flex: 1 1 50%;
+  outline: none;
+}
+.text {
+  flex: 1 1 100%;
+  outline: none;
+}
+.name2 {
+  flex: 1 1 50%;
+  outline: none;
+}
+.button {
+  flex: 1 1 50%;
+  outline: none;
+}
