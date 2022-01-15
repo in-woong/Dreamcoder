@@ -32,3 +32,8 @@
   flex: 1 1 50%;
   outline: none;
 }
+.fileInput {
+  padding: 0;
+  flex: 1 1 50%;
+  border-bottom: 1px solid makerBlack;
+}

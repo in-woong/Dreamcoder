@@ -7,7 +7,7 @@ import styles from './maker.module.css';
 import { useNavigate } from 'react-router-dom';
 import { useState } from 'react/cjs/react.development';
 
-const Maker = ({ authService }) => {
+const Maker = ({ authService, uploadService }) => {
   const [cards, setCards] = useState({
     1: {
       id: '1',
@@ -17,7 +17,7 @@ const Maker = ({ authService }) => {
       title: 'Software Engineer',
       email: 'ellie@gmail.com',
       message: 'go for it',
-      fileNmae: 'ellie',
+      fileName: '',
       fileURL: '',
     },
     2: {
@@ -28,7 +28,7 @@ const Maker = ({ authService }) => {
       title: 'Software Engineer',
       email: 'ellie@gmail.com',
       message: 'go for it',
-      fileNmae: 'ellie',
+      fileName: '',
       fileURL: '',
     },
     3: {
@@ -39,7 +39,7 @@ const Maker = ({ authService }) => {
       title: 'Software Engineer',
       email: 'ellie@gmail.com',
       message: 'go for it',
-      fileNmae: 'ellie',
+      fileName: '',
       fileURL: '',
     },
   });
@@ -81,8 +81,9 @@ const Maker = ({ authService }) => {
           cards={cards}
           createOrUpdateCard={createOrUpdateCard}
           deleteCard={deleteCard}
+          uploadService={uploadService}
         />
-        <Preview cards={cards} />
+        <Preview cards={cards} uploadService={uploadService} />
       </section>
 
       <Footer />
