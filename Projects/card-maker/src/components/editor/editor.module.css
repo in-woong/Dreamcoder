@@ -1,0 +1,12 @@
+@value makerGreen from '../../common/colors.css';
+
+.editor {
+  flex-basis: 50%;
+  background-color: cornflowerblue;
+}
+
+.title {
+    width: 100%;
+    text-align: center;
+    color: makerGreen;
+  }

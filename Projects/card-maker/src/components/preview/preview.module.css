@@ -1,0 +1,12 @@
+@value makerGreen from '../../common/colors.css';
+
+.preview {
+  flex-basis: 50%;
+  background-color: chocolate;
+}
+
+.title {
+  width: 100%;
+  text-align: center;
+  color: makerGreen;
+}
