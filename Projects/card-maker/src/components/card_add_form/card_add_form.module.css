@@ -1,0 +1,34 @@
+@value makerBlack, makerWhite from '../../common/colors.css';
+.form {
+  width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  border-top: 1px solid makerBlack;
+  border-left: 1px solid makerBlack;
+  margin-bottom: 100px;
+}
+
+.name,
+.company,
+.color {
+  flex: 1 1 30%;
+  outline: none;
+}
+
+.title,
+.email {
+  flex: 1 1 50%;
+  outline: none;
+}
+.textarea {
+  flex: 1 1 100%;
+  outline: none;
+}
+.name2 {
+  flex: 1 1 50%;
+  outline: none;
+}
+.button {
+  flex: 1 1 50%;
+  outline: none;
+}

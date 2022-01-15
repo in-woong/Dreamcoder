@@ -2,7 +2,6 @@
 @value from '../../common/colors.css';
 
 .card {
-  height: 28%;
   display: flex;
   margin: 20px;
   padding: 20px;
