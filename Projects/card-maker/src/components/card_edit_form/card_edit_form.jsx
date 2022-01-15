@@ -1,21 +1,30 @@
 import styles from "./card_edit_form.module.css";
 import React from 'react';
 
-const CardEditForm = ({ name, values, onChange, onSubmit }) => {
+const CardEditForm = ({ card }) => {
+    const { name, company, theme, title, email, message, fileName, fileURL } = card
+    const handleChange = (e) => {
+        const { name, value } = e.target;
+        console.log(name, value);
+    }
+    const handleSubmit = (event) => {
+        event.preventDefault();
+        console.log(event)
+    }
 
     return (
-        <form action="input" onSubmit={onSubmit}>
-            <input type="text" value={values.name} onChange={onChange} placeholder='name' name='name' className={styles.name} />
-            <input type="text" value={values.company} onChange={onChange} placeholder='company' name='company' className={styles.company} />
-            <select name="backgroundColor" value={values.color} onChange={onChange} id="color" className={styles.color}>
+        <form action="input" onSubmit={handleSubmit} className={styles.form}>
+            <input type="text" value={name} onChange={handleChange} placeholder='name' name='name' className={styles.name} />
+            <input type="text" value={company} onChange={handleChange} placeholder='company' name='company' className={styles.company} />
+            <select name="theme" value={theme} onChange={handleChange} className={styles.color}>
                 <option value="Dark">Dark</option>
                 <option value="Light">Light</option>
                 <option value="Red">Red</option>
             </select>
-            <input type="text" value={values.job} onChange={onChange} placeholder='job' name='job' className={styles.job} />
-            <input type="email" value={values.email} onChange={onChange} placeholder='email' name='email' className={styles.email} />
-            <input type="text" value={values.text} onChange={onChange} placeholder='text' name='text' className={styles.text} />
-            <span type="text" className={styles.name2}>{`${name}`}</span>
+            <input type="text" value={title} onChange={handleChange} placeholder='title' name='title' className={styles.title} />
+            <input type="email" value={email} onChange={handleChange} placeholder='email' name='email' className={styles.email} />
+            <textarea className={styles.textarea} name="message" value={message} />
+            <span type="text" className={styles.name2}>{`${fileName}`}</span>
             <button type="submit" className={styles.button} >Delete</button>
         </form>
     )

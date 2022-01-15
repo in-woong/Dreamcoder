@@ -1,8 +1,8 @@
-@value makerGreen from '../../common/colors.css';
+@value makerGreen, makerLightGrey from '../../common/colors.css';
 
 .editor {
   flex-basis: 50%;
-  background-color: cornflowerblue;
+  border-right: 1px solid makerLightGrey;
 }
 
 .title {
@@ -10,7 +10,8 @@
   text-align: center;
   color: makerGreen;
 }
-.view {
+.cards {
   width: 100%;
-  text-align: center;
+  height: 100%;
+  padding: 0.5em 2em;
 }

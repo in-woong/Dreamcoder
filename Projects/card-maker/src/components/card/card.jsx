@@ -7,9 +7,10 @@ function getStyles(theme) {
             return styles.dark;
         case "light":
             return styles.light;
-        case " colorful":
+        case "colorful":
             return styles.colorful;
         default:
+            throw new Error(`unknown theme:${theme}`)
     }
 }
 

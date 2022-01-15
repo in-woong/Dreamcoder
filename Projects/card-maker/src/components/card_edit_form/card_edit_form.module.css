@@ -1,31 +1,26 @@
-form {
-  width: 95%;
-  margin: auto;
-
+@value makerBlack, makerWhite from '../../common/colors.css';
+.form {
+  width: 100%;
   display: flex;
   flex-wrap: wrap;
+  border-top: 1px solid makerBlack;
+  border-left: 1px solid makerBlack;
+  margin-bottom: 100px;
 }
-.name {
-  flex: 1 1 30%;
-  outline: none;
-}
-.company {
-  flex: 1 1 30%;
-  outline: none;
-}
+
+.name,
+.company,
 .color {
   flex: 1 1 30%;
   outline: none;
 }
-.job {
-  flex: 1 1 50%;
-  outline: none;
-}
+
+.title,
 .email {
   flex: 1 1 50%;
   outline: none;
 }
-.text {
+.textarea {
   flex: 1 1 100%;
   outline: none;
 }
