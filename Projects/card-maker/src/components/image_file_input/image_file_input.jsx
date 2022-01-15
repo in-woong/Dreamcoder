@@ -1,7 +1,9 @@
-import React, { useRef } from 'react';
+import React, { useRef, useState } from 'react';
+import Loading from '../loading/loading';
 import styles from './image_file_input.module.css';
 
 const ImageFileInput = ({ card, uploadService, onFileChange }) => {
+  const [onLoading, setOnLoading] = useState(false);
   const inputRef = useRef();
   const onBtnClick = (e) => {
     e.preventDefault();
@@ -9,11 +11,18 @@ const ImageFileInput = ({ card, uploadService, onFileChange }) => {
   };
 
   const onChange = async (event) => {
-    const uploaded = await uploadService.upload(event.target.files[0]);
-    onFileChange({
-      name: uploaded.original_filename,
-      url: uploaded.url,
-    });
+    setOnLoading(true);
+    try {
+      const uploaded = await uploadService.upload(event.target.files[0]);
+      onFileChange({
+        name: uploaded.original_filename,
+        url: uploaded.url,
+      });
+    } catch (error) {
+      console.error(error);
+    } finally {
+      setOnLoading(false);
+    }
   };
   return (
     <div className={styles.container}>
@@ -24,9 +33,18 @@ const ImageFileInput = ({ card, uploadService, onFileChange }) => {
         onChange={onChange}
         type='file'
       />
-      <button className={styles.btn} onClick={onBtnClick}>
-        {card?.fileName||"No file"}
-      </button>
+      {onLoading ? (
+        <Loading />
+      ) : (
+        <button
+          className={`${styles.btn} ${
+            card?.fileName ? styles.pink : styles.gray
+          }`}
+          onClick={onBtnClick}
+        >
+          {card?.fileName || 'No file'}
+        </button>
+      )}
     </div>
   );
 };

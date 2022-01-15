@@ -14,12 +14,16 @@
   outline: 0;
   font-weight: bold;
   cursor: pointer;
-  background-color: makerLightGrey;
   font-weight: bold;
 }
 
-
 .btn:hover {
-    opacity: 0.8;
-  }
-  
+  opacity: 0.8;
+}
+
+.pink {
+  background-color: pink;
+}
+.gray{
+  background-color: makerLightGrey;
+}
