@@ -1,6 +1,7 @@
 @value makerGreen, makerBlack, makerWhite from '../../common/colors.css';
 
 .header {
+  position:fixed;
   width: 100%;
   text-align: center;
   padding: 0.5em;

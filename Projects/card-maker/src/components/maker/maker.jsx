@@ -74,20 +74,24 @@ const Maker = ({ authService, uploadService }) => {
   };
 
   return (
-    <section className={styles.maker}>
-      <Header onLogout={onLogout} />
-      <section className={styles.container}>
-        <Editor
-          cards={cards}
-          createOrUpdateCard={createOrUpdateCard}
-          deleteCard={deleteCard}
-          uploadService={uploadService}
-        />
-        <Preview cards={cards} uploadService={uploadService} />
-      </section>
+    <>
+      <section className={styles.maker}>
+        <section className={styles.header}>
+          <Header onLogout={onLogout} />
+        </section>
+        <section className={styles.container}>
+          <Editor
+            cards={cards}
+            createOrUpdateCard={createOrUpdateCard}
+            deleteCard={deleteCard}
+            uploadService={uploadService}
+          />
+          <Preview cards={cards} uploadService={uploadService} />
+        </section>
 
-      <Footer />
-    </section>
+        <Footer />
+      </section>
+    </>
   );
 };
 
