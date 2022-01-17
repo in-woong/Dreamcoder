@@ -3,7 +3,12 @@ import styles from './card_add_form.module.css';
 import ImageFileInput from '../image_file_input/image_file_input';
 import Button from '../button/button';
 
-const CardAddForm = ({ createOrUpdateCard, uploadService }) => {
+const CardAddForm = ({
+  createOrUpdateCard,
+  uploadService,
+  cardRepository,
+  userId,
+}) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();

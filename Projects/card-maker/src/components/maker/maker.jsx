@@ -4,50 +4,20 @@ import Header from '../header/header';
 import Editor from '../editor/editor';
 import Preview from '../preview/preview';
 import styles from './maker.module.css';
-import { useNavigate } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import { useState } from 'react/cjs/react.development';
 
-const Maker = ({ authService, uploadService }) => {
-  const [cards, setCards] = useState({
-    1: {
-      id: '1',
-      name: 'Ellie1',
-      company: 'Samsung',
-      theme: 'dark',
-      title: 'Software Engineer',
-      email: 'ellie@gmail.com',
-      message: 'go for it',
-      fileName: '',
-      fileURL: '',
-    },
-    2: {
-      id: '2',
-      name: 'Ellie2',
-      company: 'Samsung',
-      theme: 'colorful',
-      title: 'Software Engineer',
-      email: 'ellie@gmail.com',
-      message: 'go for it',
-      fileName: '',
-      fileURL: '',
-    },
-    3: {
-      id: '3',
-      name: 'Ellie3',
-      company: 'Samsung',
-      theme: 'light',
-      title: 'Software Engineer',
-      email: 'ellie@gmail.com',
-      message: 'go for it',
-      fileName: '',
-      fileURL: '',
-    },
-  });
+const Maker = ({ authService, uploadService, cardRepository }) => {
+  const state = useLocation().state;
+  const [userId, setUserId] = useState(state);
+  const [cards, setCards] = useState({});
   const navigate = useNavigate();
 
   useEffect(() => {
     authService.onAuthChanged((user) => {
-      if (!user) {
+      if (user) {
+        setUserId(user.uid);
+      } else if (!user) {
         navigate('/');
       }
     });
@@ -63,6 +33,7 @@ const Maker = ({ authService, uploadService }) => {
       updated[card.id] = card;
       return updated;
     });
+    cardRepository.saveCard(userId, card);
   };
 
   const deleteCard = (card) => {
@@ -71,6 +42,7 @@ const Maker = ({ authService, uploadService }) => {
       delete updated[card.id];
       return updated;
     });
+    cardRepository.removeCard(userId, card);
   };
 
   return (
@@ -85,6 +57,8 @@ const Maker = ({ authService, uploadService }) => {
             createOrUpdateCard={createOrUpdateCard}
             deleteCard={deleteCard}
             uploadService={uploadService}
+            cardRepository={cardRepository}
+            userId={userId}
           />
           <Preview cards={cards} uploadService={uploadService} />
         </section>

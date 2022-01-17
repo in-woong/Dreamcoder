@@ -5,10 +5,11 @@ import styles from './editor.module.css';
 
 const Editor = ({
   cards,
-  addCard,
   createOrUpdateCard,
   deleteCard,
   uploadService,
+  cardRepository,
+  userId
 }) => {
   return (
     <section className={styles.editor}>
@@ -29,6 +30,8 @@ const Editor = ({
           cards={cards}
           createOrUpdateCard={createOrUpdateCard}
           uploadService={uploadService}
+          cardRepository={cardRepository}
+          userId={userId}
         />
       </div>
     </section>

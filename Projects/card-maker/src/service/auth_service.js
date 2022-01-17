@@ -1,4 +1,4 @@
-import { getAuth, onAuthStateChanged, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
+import { getAuth, signInWithPopup, GoogleAuthProvider, GithubAuthProvider } from "firebase/auth";
 class AuthService {
     constructor() {
         this.firebaseAuth = getAuth();
