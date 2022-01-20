@@ -18,7 +18,6 @@ class CardRepository {
   }
 
   removeCard(userId, card) {
-    console.log('remove');
     const cardRef = ref(this.db, `${userId}/cards/${card.id}`);
     remove(cardRef);
   }

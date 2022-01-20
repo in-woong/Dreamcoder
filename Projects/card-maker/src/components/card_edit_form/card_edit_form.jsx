@@ -9,8 +9,7 @@ const CardEditForm = ({
   deleteCard,
   uploadService,
 }) => {
-  const { name, company, theme, title, email, message, fileName, fileURL } =
-    card;
+  const { name, company, theme, title, email, message } = card;
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -18,6 +17,7 @@ const CardEditForm = ({
   const titleRef = useRef();
   const emailRef = useRef();
   const messageRef = useRef();
+  console.log('edit form');
 
   const onChange = (e) => {
     e.preventDefault();

@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useCallback, useEffect } from 'react';
 import Footer from '../footer/footer';
 import Header from '../header/header';
 import Editor from '../editor/editor';
@@ -21,7 +21,8 @@ const Maker = ({ authService, uploadService, cardRepository }) => {
       setCards(cards);
     });
     return () => stopSync();
-  }, [userId]);
+  }, [userId, cardRepository]);
+
   useEffect(() => {
     authService.onAuthChanged((user) => {
       if (user) {
@@ -30,11 +31,11 @@ const Maker = ({ authService, uploadService, cardRepository }) => {
         navigate('/');
       }
     });
-  });
+  }, [authService, navigate]);
 
-  const onLogout = () => {
+  const onLogout = useCallback(() => {
     return authService.logout();
-  };
+  }, [authService]);
 
   const createOrUpdateCard = (card) => {
     setCards((cards) => {

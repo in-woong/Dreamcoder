@@ -1,14 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { memo, useRef, useState } from 'react';
 import styles from './card_add_form.module.css';
 import ImageFileInput from '../image_file_input/image_file_input';
 import Button from '../button/button';
 
-const CardAddForm = ({
-  createOrUpdateCard,
-  uploadService,
-  cardRepository,
-  userId,
-}) => {
+const CardAddForm = memo(({ createOrUpdateCard, uploadService }) => {
   const formRef = useRef();
   const nameRef = useRef();
   const companyRef = useRef();
@@ -17,6 +12,7 @@ const CardAddForm = ({
   const emailRef = useRef();
   const messageRef = useRef();
   const [file, setFile] = useState({ fileName: '', fileURL: '' });
+  console.log('addForm');
 
   const handleSubmit = (event) => {
     event.preventDefault();
@@ -94,6 +90,6 @@ const CardAddForm = ({
       <Button name='Add' onClick={handleSubmit} />
     </form>
   );
-};
+});
 
 export default CardAddForm;

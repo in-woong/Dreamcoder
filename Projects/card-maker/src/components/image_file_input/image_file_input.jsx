@@ -11,7 +11,6 @@ const ImageFileInput = ({ card, uploadService, onFileChange }) => {
   };
 
   const onChange = async (event) => {
-    
     setOnLoading(true);
     try {
       const uploaded = await uploadService.upload(event.target.files[0]);
@@ -23,7 +22,6 @@ const ImageFileInput = ({ card, uploadService, onFileChange }) => {
       console.error(error);
     } finally {
       setOnLoading(false);
-      console.log(card);
     }
   };
   return (
