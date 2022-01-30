@@ -1,9 +1,11 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import Habits from './component/habits';
 import TodoInput from './component/input';
 import Navbar from './component/navbar';
-
-class App extends Component {
+//Object 안에 깊숙한 한 값만 임의로 변경해주는 것은 좋지 않다. 왜냐하면 REactsms shallow comparison을 통해서
+//DOM을 최신화 시키기 때문이다.
+//따라서 Object를 크게크게 새로 만들어소 교체 해주는 것이 바람직 하다
+class App extends PureComponent {
   state = {
     habits: [
       { id: 1, name: 'Reading', count: 0 },
@@ -13,17 +15,23 @@ class App extends Component {
   };
 
   handleIncrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    habits[index].count++;
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        return { ...habit, count: habit.count + 1 };
+      }
+      return item;
+    });
     this.setState({ habits });
   };
 
   handleDecrement = (habit) => {
-    const habits = [...this.state.habits];
-    const index = habits.indexOf(habit);
-    const count = habits[index].count - 1;
-    habits[index].count = count > 0 ? count : 0;
+    const habits = this.state.habits.map((item) => {
+      if (item.id === habit.id) {
+        const count = habit.count - 1;
+        return { ...habit, count: count < 0 ? 0 : count };
+      }
+      return item;
+    });
     this.setState({ habits });
   };
 
@@ -43,9 +51,12 @@ class App extends Component {
   handleReset = () => {
     this.setState({ habits: [] });
   };
+
   handleCountReset = () => {
     const habits = this.state.habits.map((item) => {
-      item.count = 0;
+      if (item.count !== 0) {
+        return { ...item, count: 0 };
+      }
       return item;
     });
     this.setState({ habits });

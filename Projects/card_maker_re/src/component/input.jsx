@@ -1,6 +1,6 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 
-class TodoInput extends Component {
+class TodoInput extends PureComponent {
   inputRef = React.createRef();
   formRef = React.createRef();
   handleSubmit = (e) => {
