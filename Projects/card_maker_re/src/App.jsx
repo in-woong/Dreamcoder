@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import Habits from './component/habits';
 import TodoInput from './component/input';
+import Navbar from './component/navbar';
 
 class App extends Component {
   state = {
@@ -26,27 +27,49 @@ class App extends Component {
     this.setState({ habits });
   };
 
-  handleRemove = (habit) => {
+  handleDelete = (habit) => {
     const habits = this.state.habits.filter((item) => item.id != habit.id);
     this.setState({ habits });
   };
 
-  onSubmit = (value) => {
-    console.log(value);
-    this.setState({
-      habits: [...this.state.habits, { name: value, count: 0 }],
-    });
+  handleAdd = (name) => {
+    const habits = [
+      ...this.state.habits,
+      { id: Date.now().toString(), name, count: 0 },
+    ];
+    this.setState({ habits });
   };
+
+  handleReset = () => {
+    this.setState({ habits: [] });
+  };
+  handleCountReset = () => {
+    const habits = this.state.habits.map((item) => {
+      item.count = 0;
+      return item;
+    });
+    this.setState({ habits });
+  };
+
   render() {
     return (
       <div>
-        <TodoInput handleSubmit={this.onSubmit} />
+        <Navbar
+          totalCount={this.state.habits.filter((item) => item.count > 0).length}
+        />
         <Habits
           habits={this.state.habits}
           onIncrement={this.handleIncrement}
           onDecrement={this.handleDecrement}
-          onRemove={this.handleRemove}
+          onDelete={this.handleDelete}
+          onAdd={this.handleAdd}
         />
+        <button className='reset-btn' onClick={this.handleReset}>
+          ResetAll
+        </button>
+        <button className='countReset-btn' onClick={this.handleCountReset}>
+          CountReset
+        </button>
       </div>
     );
   }

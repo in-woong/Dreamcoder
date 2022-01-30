@@ -1,19 +1,30 @@
 import React, { Component } from 'react';
 
 class TodoInput extends Component {
-  constructor(props) {
-    super(props);
-    this.myInput = React.createRef();
-    
-  }
-  
+  inputRef = React.createRef();
+  formRef = React.createRef();
+  handleSubmit = (e) => {
+    e.preventDefault();
+    const name = this.inputRef.current.value;
+    name && this.props.onAdd(name);
+    this.formRef.current.reset();
+  };
 
   render() {
-    
+    console.log("Input render")
     return (
-      <form onSubmit={() => this.props.handleSubmit("value")}>
-        <input ref={this.myInput} type='text' />
-        <input type='submit' value='Submit' />
+      <form
+        ref={this.formRef}
+        className='add-form'
+        onSubmit={this.handleSubmit}
+      >
+        <input
+          className='add-input'
+          placeholder='Habit'
+          ref={this.inputRef}
+          type='text'
+        />
+        <input className='add-button' type='submit' value='Submit' />
       </form>
     );
   }
