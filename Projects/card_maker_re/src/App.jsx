@@ -1,38 +1,55 @@
-import { useState, useRef } from 'react';
-import { isCompositeComponentWithType } from 'react-dom/cjs/react-dom-test-utils.development';
-import './App.css';
+import React, { Component } from 'react';
 import Habits from './component/habits';
+import TodoInput from './component/input';
 
-function App() {
-  const [data, setData] = useState([]);
-  const inputref = useRef();
-
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    const name = inputref.current.value;
-    setData([...data, { name, count: 0 }]);
-    inputref.current.value = '';
+class App extends Component {
+  state = {
+    habits: [
+      { id: 1, name: 'Reading', count: 0 },
+      { id: 2, name: 'Study', count: 0 },
+      { id: 3, name: 'Playing', count: 0 },
+    ],
   };
 
-  const onPlus = (item) => {
-    console.log(typeof item);
-    const items = data.filter((d) => d.name !== item.name);
-    setData([...items, { name: data.name, count: data.count + 1 }]);
+  handleIncrement = (habit) => {
+    const habits = [...this.state.habits];
+    const index = habits.indexOf(habit);
+    habits[index].count++;
+    this.setState({ habits });
   };
-  const onMinus = () => {};
 
-  return (
-    <div className='App'>
-      <form onSubmit={handleSubmit}>
-        <input type='text' ref={inputref} />
-        <input type='submit' />
-      </form>
-      {data &&
-        data.map((item, index) => (
-          <Habits key={index} data={item} handlePlus={() => onPlus(item)} />
-        ))}
-    </div>
-  );
+  handleDecrement = (habit) => {
+    const habits = [...this.state.habits];
+    const index = habits.indexOf(habit);
+    const count = habits[index].count - 1;
+    habits[index].count = count > 0 ? count : 0;
+    this.setState({ habits });
+  };
+
+  handleRemove = (habit) => {
+    const habits = this.state.habits.filter((item) => item.id != habit.id);
+    this.setState({ habits });
+  };
+
+  onSubmit = (value) => {
+    console.log(value);
+    this.setState({
+      habits: [...this.state.habits, { name: value, count: 0 }],
+    });
+  };
+  render() {
+    return (
+      <div>
+        <TodoInput handleSubmit={this.onSubmit} />
+        <Habits
+          habits={this.state.habits}
+          onIncrement={this.handleIncrement}
+          onDecrement={this.handleDecrement}
+          onRemove={this.handleRemove}
+        />
+      </div>
+    );
+  }
 }
 
 export default App;
