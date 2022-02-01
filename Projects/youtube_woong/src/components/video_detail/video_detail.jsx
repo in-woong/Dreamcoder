@@ -1,8 +1,6 @@
-import React from 'react';
 import styles from './video_detail.module.css';
 
-const VideoDetail = ({ selectedVideo }) => {
-  console.log(selectedVideo);
+const videoDetail = ({ selectedVideo }) => {
   return (
     <section className={styles.detail}>
       <iframe
@@ -24,4 +22,4 @@ const VideoDetail = ({ selectedVideo }) => {
   );
 };
 
-export default VideoDetail;
+export default videoDetail;

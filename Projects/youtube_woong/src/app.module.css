@@ -1,0 +1,18 @@
+.app {
+  max-width: 80%;
+  margin: auto;
+}
+.content {
+  display: flex;
+}
+.detail {
+  flex: 1 1 70%;
+}
+.list {
+  flex: 1 1 30%;
+}
+@media screen and (max-width: 900px) {
+  .content {
+    flex-direction: column;
+  }
+}
