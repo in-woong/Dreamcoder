@@ -38,4 +38,34 @@
   const maker1 = CoffeeMaker.makeMachine(32);
   const maker2 = CoffeeMaker.makeMachine(52);
   console.log(maker2);
+
+  class User {
+    get fullName(): string {
+      return `${this.firstName} ${this.lastName}`;
+    }
+    private internalAge: number = 4;
+    get age(): number {
+      return this.internalAge;
+    }
+    set age(age: number) {
+      if (age < 0) {
+        throw Error('value has to bigger than zero');
+      }
+      this.internalAge = age;
+    }
+    // fullName: string;
+    // firstName: string;
+    // lastName: string;
+    constructor(private firstName: string, private lastName: string) {
+      //   this.firstName = firstName;
+      //   this.lastName = lastName;
+      //   this.fullName = `${this.firstName}${this.lastName}`;
+    }
+  }
+  const user1 = new User('seteve', 'jobs');
+  console.log(user1.fullName);
+  console.log(user1.age);
+  user1.age = 22;
+  console.log(user1.age);
+  //   user1.firstName = 'Ellie';
 }
