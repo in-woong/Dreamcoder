@@ -1,0 +1,36 @@
+body {
+  margin: 0;
+  background-color: black;
+  color: white;
+}
+.title {
+  z-index: 100;
+  will-change: scroll-position;
+}
+.line {
+  position: absolute;
+  background-color: purple;
+}
+#horizontal {
+  width: 100%;
+  height: 1px;
+  /* top: 50%; */
+}
+#vertical {
+  width: 1px;
+  height: 100%;
+  /* left: 50%; */
+}
+#target {
+  position: absolute;
+  /* top:50%;
+  left:50%; */
+  /* transform: translate(-50%, -50%); */
+}
+#result {
+  position: absolute;
+  margin:20px;
+  /* top: 50%;
+  left: 50%; */
+  font-size: 30px;
+}

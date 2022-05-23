@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <script type="module" src="./src/main.js" defer></script>
+    <script
+      src="https://kit.fontawesome.com/9eb162ac0d.js"
+      crossorigin="anonymous"
+    ></script>
+    <link rel="stylesheet" href="style.css" />
+    <title>Document</title>
+  </head>
+  <body>
+    <section class="game">
+      <header>
+        <button class="game__play">
+          <i class="fas fa-play"></i>
+        </button>
+        <span class="game__timer"> 00 : 00 </span>
+        <span class="game__score">13</span>
+      </header>
+      <section class="game__field"></section>
+      <section class="pop-up hidden">
+        <button class="pop-up__replay">
+          <i class="fas fa-redo"></i>
+        </button>
+        <span class="popup__messg">You Lost</span>
+      </section>
+    </section>
+  </body>
+</html>
