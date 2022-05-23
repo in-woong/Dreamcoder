@@ -1,0 +1,54 @@
+@value makerBlack, makerShadow, makerWhite, makerColorful, makerWheat from '../../common/colors.css';
+@value from '../../common/colors.css';
+
+.card {
+  display: flex;
+  margin: 20px;
+  padding: 20px;
+  border-radius: 30px;
+  color: white;
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 20px;
+  box-shadow: 10px 10px 35px -1px makerShadow;
+}
+
+.card.dark {
+  background-color: makerBlack;
+  color: makerWhite;
+}
+.card.light {
+  background-color: makerWhite;
+  color: makerBlack;
+}
+.card.colorful {
+  background: makerColorful;
+  color: makerWhite;
+}
+.cardImg {
+  width: 30%;
+  height:30%;
+  size: 10px;
+  margin-right: 40px;
+  border-radius: 50%;
+}
+
+.cardDesc {
+  width: 70%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.company {
+  margin-bottom: 10px;
+}
+
+.company::after {
+  content: '';
+  display: block;
+  width: 90%;
+  height: 2px;
+  background-color: makerWheat;
+  transform: translateY(5px);
+}
