@@ -1,24 +1,20 @@
 import React, { Component } from 'react';
-import React from 'react';
 import { useState } from 'react/cjs/react.development';
 
 const SimpleHabit = (props) => {
-    const [count, setCount]=useState(0);
-    const  handleIncreament = () => {
-        setCount(count +1);
-      };
-    return (
-        <li className='hahit'>
-          <span className='habit-name'>Reading</span>
-          <span className='habit-count'>{this.state.count}</span>
-          <buton
-            className='habit-button habit-increase'
-            onClick={handleIncreament}
-          >
-            <i className='fa-plus-square fas'></i>
-          </buton>
-        </li>
-      );
+  const [count, setCount] = useState(0);
+  const handleIncreament = () => {
+    setCount(count + 1);
+  };
+  return (
+    <li className='habit'>
+      <span className='habit-name'>Reading</span>
+      <span className='habit-count'>{this.state.count}</span>
+      <buton className='habit-button habit-increase' onClick={handleIncreament}>
+        <i className='fa-plus-square fas'></i>
+      </buton>
+    </li>
+  );
 };
 
 export default SimpleHabit;
